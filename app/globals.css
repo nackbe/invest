@@ -19,3 +19,14 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Respaldo PDF del presentador (§10): fondos e impresión a color */
+@media print {
+  :root {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .print-deck > section {
+    page-break-after: always;
+  }
+}
