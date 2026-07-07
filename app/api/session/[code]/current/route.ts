@@ -3,6 +3,9 @@ import { getServiceClient } from "@/lib/supabase/server";
 import { QUESTION_BANK } from "@/data/questions";
 import { toPublic } from "@/lib/quiz/public";
 
+// Nunca cachear: el estado de la sala cambia en vivo (Next cachea GET por defecto).
+export const dynamic = "force-dynamic";
+
 export async function GET(_req: Request, { params }: { params: { code: string } }) {
   const db = getServiceClient();
   const { data: s } = await db.from("sessions").select("*").eq("code", params.code).single();

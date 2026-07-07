@@ -24,7 +24,7 @@ export function PlayerApp({ initialCode }: { initialCode: string }) {
   useEffect(() => {
     if (!session || !player) return;
     setAnswered(null);
-    fetch(`/api/session/${code}/current`).then((r) => r.json()).then(setCurrent);
+    fetch(`/api/session/${code}/current`, { cache: "no-store" }).then((r) => r.json()).then(setCurrent);
   }, [session?.phase, session?.current_index, player, code, session]);
 
   async function submit(answer: Answer) {

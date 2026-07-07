@@ -17,7 +17,7 @@ export function ScreenApp({ code }: { code: string }) {
   const [current, setCurrent] = useState<CurrentQuestion | null>(null);
   useEffect(() => {
     if (!session) return;
-    fetch(`/api/session/${code}/current`).then((r) => r.json()).then(setCurrent);
+    fetch(`/api/session/${code}/current`, { cache: "no-store" }).then((r) => r.json()).then(setCurrent);
   }, [session?.phase, session?.current_index, code, session]);
 
   const phase = session?.phase ?? "lobby";
