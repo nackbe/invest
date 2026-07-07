@@ -60,6 +60,8 @@ export function Quiz() {
         <button onClick={restart} className="mt-4 rounded-xl bg-emerald-500 px-6 py-3 font-semibold text-neutral-950 active:bg-emerald-600">
           Volver a intentar
         </button>
+        <a href="/" className="text-sm text-neutral-500 underline-offset-4 hover:underline">Ir al simulador</a>
+        <p className="mt-2 max-w-xs text-xs text-neutral-600">Este puntaje mide conocimiento, no tu situación financiera.</p>
       </main>
     );
   }

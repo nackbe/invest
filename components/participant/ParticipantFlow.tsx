@@ -30,6 +30,9 @@ export function ParticipantFlow() {
 
   return (
     <div className="min-h-screen">
+      <a href="/quiz" className="fixed right-3 top-3 z-10 rounded-full border border-neutral-800 bg-neutral-950/80 px-3 py-1 text-xs text-neutral-400 backdrop-blur">
+        Quiz 🧠
+      </a>
       {step === "simular" && <Simulator sim={sim} />}
       {step === "comparar" && <Comparador sim={sim} />}
       {step === "metas" && <Metas sim={sim} />}

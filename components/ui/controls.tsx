@@ -105,6 +105,14 @@ export function SegmentedTabs<T extends string>({
   );
 }
 
+/** Tamaño del número gigante ajustado a su largo para no desbordar en 380px. */
+export function fitNumberClass(value: string): string {
+  const len = value.replace(/\s/g, "").length;
+  if (len >= 14) return "text-3xl sm:text-5xl";
+  if (len >= 11) return "text-4xl sm:text-6xl";
+  return "text-5xl sm:text-6xl";
+}
+
 export function BigNumber({
   value,
   caption,
@@ -117,7 +125,7 @@ export function BigNumber({
   return (
     <div className="text-center">
       {caption && <div className="text-sm text-neutral-400">{caption}</div>}
-      <div className="text-5xl font-bold tracking-tight text-emerald-400 tabular-nums sm:text-6xl">
+      <div className={`break-words font-bold leading-none tracking-tight text-emerald-400 tabular-nums ${fitNumberClass(value)}`}>
         {value}
       </div>
       {sub && <div className="mt-1 text-sm text-neutral-500">{sub}</div>}

@@ -7,6 +7,7 @@ import { toPng } from "html-to-image";
 import type { useSimulator } from "@/components/simulator/useSimulator";
 import { PRODUCT_BY_KEY, DISCLAIMER } from "@/config/assumptions";
 import { formatCOP } from "@/lib/format";
+import { fitNumberClass } from "@/components/ui/controls";
 
 function planSummary(sim: ReturnType<typeof useSimulator>): string {
   const { state, input } = sim;
@@ -52,7 +53,7 @@ export function Plan({ sim }: { sim: ReturnType<typeof useSimulator> }) {
         <div className="text-xs uppercase tracking-widest text-emerald-400">Invierte</div>
         <div className="mt-6 text-center">
           <div className="text-sm text-neutral-400">A mis {state.targetAge} años tendría</div>
-          <div className="text-5xl font-bold tracking-tight text-emerald-400 tabular-nums">{formatCOP(result.final)}</div>
+          <div className={`break-words font-bold leading-none tracking-tight text-emerald-400 tabular-nums ${fitNumberClass(formatCOP(result.final))}`}>{formatCOP(result.final)}</div>
           <div className="mt-1 text-sm text-neutral-500">
             {input.years} años · empiezo a los {state.startAge}
           </div>
