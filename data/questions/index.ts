@@ -6,5 +6,7 @@ import { GEOGRAFIA } from "./geografia";
 import { ARTE } from "./arte";
 import { SALUD } from "./salud";
 import { GASTRONOMIA } from "./gastronomia";
+import { CINE } from "./cine";
+import { BELLEZA } from "./belleza";
 
-export const QUESTION_BANK: Question[] = [...INVERSIONES, ...MUNDIAL, ...CURIOSOS, ...GEOGRAFIA, ...ARTE, ...SALUD, ...GASTRONOMIA];
+export const QUESTION_BANK: Question[] = [...INVERSIONES, ...MUNDIAL, ...CURIOSOS, ...GEOGRAFIA, ...ARTE, ...SALUD, ...GASTRONOMIA, ...CINE, ...BELLEZA];

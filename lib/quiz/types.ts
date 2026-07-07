@@ -1,5 +1,5 @@
 export type Difficulty = "facil" | "media" | "dificil";
-export type Category = "inversiones" | "mundial" | "curiosos" | "geografia" | "arte" | "salud" | "gastronomia";
+export type Category = "inversiones" | "mundial" | "curiosos" | "geografia" | "arte" | "salud" | "gastronomia" | "cine" | "belleza";
 export type QuestionType = "single" | "boolean" | "text" | "order" | "match" | "hotspot";
 
 type Base = {

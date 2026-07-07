@@ -29,9 +29,9 @@ describe("question bank invariants", () => {
       expect(q.correctIndex).toBeLessThan(4);
     }
   });
-  it("covers all seven categories", () => {
+  it("covers all nine categories", () => {
     expect(new Set(QUESTION_BANK.map((q) => q.category))).toEqual(
-      new Set(["inversiones", "mundial", "curiosos", "geografia", "arte", "salud", "gastronomia"])
+      new Set(["inversiones", "mundial", "curiosos", "geografia", "arte", "salud", "gastronomia", "cine", "belleza"])
     );
   });
   it("every explanation is non-empty", () => {

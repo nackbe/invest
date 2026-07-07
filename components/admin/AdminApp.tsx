@@ -17,7 +17,7 @@ type Current = {
   question?: Question & { explanation?: string };
 };
 
-const CATS: Category[] = ["inversiones", "mundial", "curiosos", "geografia", "arte", "salud", "gastronomia"];
+const CATS: Category[] = ["inversiones", "mundial", "curiosos", "geografia", "arte", "salud", "gastronomia", "cine", "belleza"];
 
 export function AdminApp() {
   const [authed, setAuthed] = useState(false);
