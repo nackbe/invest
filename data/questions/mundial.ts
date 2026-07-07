@@ -128,9 +128,9 @@ export const MUNDIAL: Question[] = [
     type: "order",
     prompt: "Ordena estos idiomas según la cantidad de países del Mundial que los tienen como lengua oficial mayoritaria, de menos a más: alemán, español, portugués.",
     items: [
-      { id: "aleman", label: "Alemán (1 país: Alemania)" },
-      { id: "portugues", label: "Portugués (2 países: Portugal y Brasil)" },
-      { id: "espanol", label: "Español (varios países: España, Argentina, México, Uruguay, Colombia...)" },
+      { id: "aleman", label: "Alemán" },
+      { id: "portugues", label: "Portugués" },
+      { id: "espanol", label: "Español" },
     ],
     explanation: "El alemán es oficial mayoritario solo en Alemania; el portugués en Portugal y Brasil; el español es idioma oficial en muchos más países participantes del Mundial.",
   },
@@ -162,7 +162,7 @@ export const MUNDIAL: Question[] = [
   {
     id: "mun-016",
     category: "mundial",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "single",
     prompt: "¿Qué pintor español creó la obra 'Guernica'?",
     options: ["Salvador Dalí", "Pablo Picasso", "Diego Velázquez", "Francisco de Goya"],
@@ -182,7 +182,7 @@ export const MUNDIAL: Question[] = [
   {
     id: "mun-018",
     category: "mundial",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "single",
     prompt: "¿Cuál de estos compositores clásicos era alemán?",
     options: ["Ludwig van Beethoven", "Wolfgang Amadeus Mozart", "Frédéric Chopin", "Antonio Vivaldi"],
@@ -216,9 +216,9 @@ export const MUNDIAL: Question[] = [
     type: "order",
     prompt: "Ordena estos monumentos según cuándo inició su construcción, del más antiguo al más reciente: Coliseo romano, Sagrada Familia, Torre Eiffel.",
     items: [
-      { id: "coliseo", label: "Coliseo romano (inicio ~70 d.C.)" },
-      { id: "sagrada", label: "Sagrada Familia (inicio de obra en 1882)" },
-      { id: "eiffel", label: "Torre Eiffel (construida entre 1887 y 1889)" },
+      { id: "coliseo", label: "Coliseo romano" },
+      { id: "sagrada", label: "Sagrada Familia" },
+      { id: "eiffel", label: "Torre Eiffel" },
     ],
     explanation: "El Coliseo se construyó en el siglo I d.C., la Sagrada Familia inició sus obras en 1882 (y aún continúan) y la Torre Eiffel se construyó entre 1887 y 1889.",
   },
@@ -268,7 +268,7 @@ export const MUNDIAL: Question[] = [
   {
     id: "mun-026",
     category: "mundial",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "single",
     prompt: "¿De qué país es esta bandera?",
     mediaUrl: "https://flagcdn.com/w320/be.png",
@@ -290,7 +290,7 @@ export const MUNDIAL: Question[] = [
   {
     id: "mun-028",
     category: "mundial",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "single",
     prompt: "¿De qué país es esta bandera?",
     mediaUrl: "https://flagcdn.com/w320/kr.png",
@@ -312,7 +312,7 @@ export const MUNDIAL: Question[] = [
   {
     id: "mun-030",
     category: "mundial",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "text",
     prompt: "¿Cuál es la capital de Australia? (No es Sídney)",
     accept: ["canberra", "Canberra"],
@@ -321,7 +321,7 @@ export const MUNDIAL: Question[] = [
   {
     id: "mun-031",
     category: "mundial",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "single",
     prompt: "¿Cuál es la capital de Turquía?",
     options: ["Estambul", "Ankara", "Esmirna (Izmir)", "Bursa"],
@@ -331,7 +331,7 @@ export const MUNDIAL: Question[] = [
   {
     id: "mun-032",
     category: "mundial",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "match",
     prompt: "Relaciona cada obra literaria con su autor.",
     pairs: [
@@ -349,9 +349,9 @@ export const MUNDIAL: Question[] = [
     type: "order",
     prompt: "Ordena estos países según su número de idiomas oficiales, de menos a más.",
     items: [
-      { id: "francia", label: "Francia (1 idioma oficial: francés)" },
-      { id: "belgica", label: "Bélgica (3 idiomas oficiales: neerlandés, francés y alemán)" },
-      { id: "suiza", label: "Suiza (4 idiomas oficiales: alemán, francés, italiano y romanche)" },
+      { id: "francia", label: "Francia" },
+      { id: "belgica", label: "Bélgica" },
+      { id: "suiza", label: "Suiza" },
     ],
     explanation: "Francia solo reconoce el francés como idioma oficial; Bélgica reconoce tres (neerlandés, francés y alemán); Suiza reconoce cuatro (alemán, francés, italiano y romanche).",
   },

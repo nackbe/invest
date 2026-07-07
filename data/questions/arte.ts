@@ -130,7 +130,7 @@ export const ARTE: Question[] = [
   {
     id: "art-013",
     category: "arte",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "boolean",
     prompt: "¿'Las Meninas' es una obra del pintor español Diego Velázquez?",
     correct: true,
@@ -172,9 +172,9 @@ export const ARTE: Question[] = [
     type: "order",
     prompt: "Ordena estas películas según su año de estreno, de la más antigua a la más reciente.",
     items: [
-      { id: "padrino", label: "El Padrino (1972)" },
-      { id: "titanic", label: "Titanic (1997)" },
-      { id: "sda", label: "El Señor de los Anillos: El Retorno del Rey (2003)" },
+      { id: "padrino", label: "El Padrino" },
+      { id: "titanic", label: "Titanic" },
+      { id: "sda", label: "El Señor de los Anillos: El Retorno del Rey" },
     ],
     explanation: "'El Padrino' se estrenó en 1972, 'Titanic' en 1997 y 'El Señor de los Anillos: El Retorno del Rey' en 2003.",
   },
@@ -215,7 +215,7 @@ export const ARTE: Question[] = [
   {
     id: "art-021",
     category: "arte",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "boolean",
     prompt: "¿El techo de la Capilla Sixtina, con sus famosos frescos, fue pintado por Miguel Ángel?",
     correct: true,
@@ -243,13 +243,13 @@ export const ARTE: Question[] = [
   {
     id: "art-024",
     category: "arte",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "order",
     prompt: "Ordena estos artistas según el año en que nacieron, del más antiguo al más reciente.",
     items: [
-      { id: "davinci", label: "Leonardo da Vinci (nació en 1452)" },
-      { id: "vangogh", label: "Vincent van Gogh (nació en 1853)" },
-      { id: "picasso", label: "Pablo Picasso (nació en 1881)" },
+      { id: "davinci", label: "Leonardo da Vinci" },
+      { id: "vangogh", label: "Vincent van Gogh" },
+      { id: "picasso", label: "Pablo Picasso" },
     ],
     explanation: "Leonardo da Vinci nació en 1452 (Renacimiento), Vincent van Gogh en 1853 y Pablo Picasso en 1881, casi tres décadas después que Van Gogh.",
   },

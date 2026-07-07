@@ -187,7 +187,7 @@ export const SALUD: Question[] = [
   {
     id: "sal-019",
     category: "salud",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "single",
     prompt: "¿Cuántos cromosomas tiene una célula humana normal (no reproductiva)?",
     options: ["23", "46", "44", "48"],
@@ -197,7 +197,7 @@ export const SALUD: Question[] = [
   {
     id: "sal-020",
     category: "salud",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "single",
     prompt: "¿Qué tipo de sangre se considera 'donante universal', porque puede transfundirse a personas de cualquier grupo sanguíneo?",
     options: ["O positivo", "O negativo", "AB positivo", "A negativo"],
@@ -207,7 +207,7 @@ export const SALUD: Question[] = [
   {
     id: "sal-021",
     category: "salud",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "text",
     prompt: "¿Cómo se llama la glándula con forma de mariposa, ubicada en el cuello, que regula el metabolismo del cuerpo?",
     accept: ["tiroides", "la tiroides", "glandula tiroides", "glándula tiroides"],
@@ -216,7 +216,7 @@ export const SALUD: Question[] = [
   {
     id: "sal-022",
     category: "salud",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "boolean",
     prompt: "¿El páncreas cumple una doble función: produce insulina (función endocrina) y también enzimas digestivas (función exocrina)?",
     correct: true,
@@ -238,7 +238,7 @@ export const SALUD: Question[] = [
   {
     id: "sal-024",
     category: "salud",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "order",
     prompt: "Ordena estas estructuras del sistema respiratorio según el recorrido del aire al inhalar, de la primera a la última.",
     items: [

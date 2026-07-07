@@ -166,7 +166,7 @@ export const GEOGRAFIA: Question[] = [
   {
     id: "geo-017",
     category: "geografia",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "text",
     prompt: "¿Cuál es el punto más profundo conocido de los océanos, ubicado en el océano Pacífico?",
     accept: ["fosa de las marianas", "fosa marianas", "marianas", "la fosa de las marianas", "trinchera de las marianas", "fosa mariana"],
@@ -268,9 +268,9 @@ export const GEOGRAFIA: Question[] = [
     type: "order",
     prompt: "Ordena estos ríos de MAYOR a MENOR longitud aproximada.",
     items: [
-      { id: "nilo", label: "Nilo (~6.650 km)" },
-      { id: "yangtse", label: "Yangtsé (~6.300 km)" },
-      { id: "danubio", label: "Danubio (~2.850 km)" },
+      { id: "nilo", label: "Nilo" },
+      { id: "yangtse", label: "Yangtsé" },
+      { id: "danubio", label: "Danubio" },
     ],
     explanation: "El Nilo (África) es el río más largo según la medición tradicional, seguido del Yangtsé (China); el Danubio, aunque histórico e importante en Europa, es mucho más corto que ambos.",
   },
@@ -297,7 +297,7 @@ export const GEOGRAFIA: Question[] = [
   {
     id: "geo-029",
     category: "geografia",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "boolean",
     prompt: "¿Rusia es el país con más husos horarios (zonas horarias) del mundo, con once?",
     correct: true,
@@ -306,7 +306,7 @@ export const GEOGRAFIA: Question[] = [
   {
     id: "geo-030",
     category: "geografia",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "boolean",
     prompt: "¿Sudáfrica tiene tres ciudades capitales distintas: una administrativa, una legislativa y una judicial?",
     correct: true,

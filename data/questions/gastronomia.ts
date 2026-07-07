@@ -246,9 +246,9 @@ export const GASTRONOMIA: Question[] = [
     type: "order",
     prompt: "Ordena estas técnicas de cocción según la temperatura aproximada que suelen requerir, de menor a mayor.",
     items: [
-      { id: "escalfar", label: "Escalfar (~70-80 °C)" },
-      { id: "hervir", label: "Hervir (100 °C)" },
-      { id: "hornear", label: "Hornear (180-220 °C)" },
+      { id: "escalfar", label: "Escalfar" },
+      { id: "hervir", label: "Hervir" },
+      { id: "hornear", label: "Hornear" },
     ],
     explanation: "Escalfar usa agua caliente pero sin llegar al hervor (~70-80 °C), hervir usa agua a 100 °C, y hornear suele requerir temperaturas de horno de 180 a 220 °C o más.",
   },

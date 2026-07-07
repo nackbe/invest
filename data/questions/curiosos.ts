@@ -157,7 +157,7 @@ export const CURIOSOS: Question[] = [
   {
     id: "cur-016",
     category: "curiosos",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "boolean",
     prompt: "¿Venus es el planeta más caliente del sistema solar, más aún que Mercurio?",
     correct: true,
@@ -195,7 +195,7 @@ export const CURIOSOS: Question[] = [
   {
     id: "cur-020",
     category: "curiosos",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "boolean",
     prompt: "¿Los tiburones existían antes que los árboles en la historia de la Tierra?",
     correct: true,
@@ -204,7 +204,7 @@ export const CURIOSOS: Question[] = [
   {
     id: "cur-021",
     category: "curiosos",
-    difficulty: "dificil",
+    difficulty: "facil",
     type: "order",
     prompt: "Ordena estos eventos de la historia de la Tierra del más antiguo al más reciente: aparición de los dinosaurios, extinción de los dinosaurios, aparición del ser humano moderno.",
     items: [
@@ -218,7 +218,7 @@ export const CURIOSOS: Question[] = [
   {
     id: "cur-022",
     category: "curiosos",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "single",
     prompt: "¿A qué velocidad aproximada viaja la luz en el vacío?",
     options: ["300.000 km/s", "150.000 km/s", "1.000.000 km/s", "30.000 km/s"],
@@ -228,7 +228,7 @@ export const CURIOSOS: Question[] = [
   {
     id: "cur-023",
     category: "curiosos",
-    difficulty: "dificil",
+    difficulty: "facil",
     type: "text",
     prompt: "¿Qué gas exhalamos principalmente al respirar, como producto de desecho del cuerpo?",
     accept: ["dioxido de carbono", "dióxido de carbono", "co2", "el dioxido de carbono", "el dióxido de carbono", "gas carbonico"],
@@ -237,7 +237,7 @@ export const CURIOSOS: Question[] = [
   {
     id: "cur-024",
     category: "curiosos",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "boolean",
     prompt: "¿El elemento más abundante en el universo es el hidrógeno?",
     correct: true,
@@ -246,7 +246,7 @@ export const CURIOSOS: Question[] = [
   {
     id: "cur-025",
     category: "curiosos",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "single",
     prompt: "¿Cuál es el animal más grande que se conoce, incluso más que cualquier dinosaurio conocido?",
     options: ["El elefante africano", "La ballena azul", "El tiburón ballena", "El diplodocus"],

@@ -212,7 +212,7 @@ export const INVERSIONES: Question[] = [
   {
     id: "inv-017",
     category: "inversiones",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "boolean",
     prompt: "¿En Colombia, los rendimientos de algunas inversiones pueden estar sujetos a retención en la fuente por parte de la DIAN?",
     correct: true,
@@ -305,7 +305,7 @@ export const INVERSIONES: Question[] = [
   {
     id: "inv-024",
     category: "inversiones",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "boolean",
     prompt: "¿En Colombia, la utilidad por vender acciones a través de la bolsa de valores puede estar exenta de impuesto de renta si la venta no supera el 10% de las acciones en circulación de esa empresa en un año?",
     correct: true,
