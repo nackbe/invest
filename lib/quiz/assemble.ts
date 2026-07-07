@@ -11,7 +11,7 @@ export type ContestConfig = {
 const DIFS: Difficulty[] = ["facil", "media", "dificil"];
 const RANK: Record<Difficulty, number> = { facil: 0, media: 1, dificil: 2 };
 
-/** Reparte numQuestions por porcentaje; el sobrante de redondeo va al bucket mayor. */
+/** Reparte numQuestions por porcentaje; el sobrante de redondeo va al de mayor resto (largest remainder). */
 export function difficultyQuotas(
   numQuestions: number,
   dist: Record<Difficulty, number>
@@ -33,6 +33,8 @@ export function difficultyQuotas(
 
 /** Muestrea del banco según cupos de dificultad y ordena agrupado por categoría. */
 export function assembleSet(bank: Question[], config: ContestConfig, rng: () => number = Math.random): Question[] {
+  if (config.categories.length === 0) return [];
+
   const pool = bank.filter((q) => config.categories.includes(q.category));
   const quotas = difficultyQuotas(config.numQuestions, config.difficultyDist);
 
@@ -48,7 +50,7 @@ export function assembleSet(bank: Question[], config: ContestConfig, rng: () => 
 
       // If no candidates for current category, try others
       if (candidates.length === 0) {
-        for (let attempt = 0; attempt < config.categories.length; attempt++) {
+        for (let attempt = 1; attempt < config.categories.length; attempt++) {
           const altCat = config.categories[(catIdx + attempt) % config.categories.length];
           candidates = pool.filter((q) => q.difficulty === d && q.category === altCat && !picked.includes(q));
           if (candidates.length > 0) break;
@@ -60,6 +62,15 @@ export function assembleSet(bank: Question[], config: ContestConfig, rng: () => 
         picked.push(candidates[idx]);
         catIdx++;
       }
+    }
+  }
+
+  if (picked.length < config.numQuestions) {
+    let remaining = pool.filter((q) => !picked.includes(q));
+    while (picked.length < config.numQuestions && remaining.length > 0) {
+      const idx = Math.floor(rng() * remaining.length);
+      picked.push(remaining[idx]);
+      remaining = remaining.filter((_, i) => i !== idx);
     }
   }
 

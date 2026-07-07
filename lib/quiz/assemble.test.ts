@@ -21,7 +21,7 @@ describe("difficultyQuotas", () => {
     expect(q.facil + q.media + q.dificil).toBe(10);
     expect(q).toEqual({ facil: 3, media: 3, dificil: 4 });
   });
-  it("absorbs rounding into the largest bucket to hit the total", () => {
+  it("absorbs rounding by largest remainder to hit the total", () => {
     const q = difficultyQuotas(7, DEFAULT_DIST);
     expect(q.facil + q.media + q.dificil).toBe(7);
   });
@@ -60,5 +60,25 @@ describe("assembleSet", () => {
   it("does not repeat questions", () => {
     const set = assembleSet(bank(), cfg, zero);
     expect(new Set(set.map((q) => q.id)).size).toBe(set.length);
+  });
+
+  it("backfills to numQuestions when a difficulty is under-stocked", () => {
+    // banco con pocas 'dificil' en una sola categoría
+    const small: Question[] = [];
+    for (let i = 0; i < 8; i++) small.push({ id: `f${i}`, category: "inversiones", difficulty: "facil", type: "boolean", correct: true, prompt: "p", explanation: "e" });
+    for (let i = 0; i < 1; i++) small.push({ id: `d${i}`, category: "inversiones", difficulty: "dificil", type: "boolean", correct: true, prompt: "p", explanation: "e" });
+    const cfg: ContestConfig = { numQuestions: 6, categories: ["inversiones"], difficultyDist: { facil: 0, media: 0, dificil: 100 } };
+    const set = assembleSet(small, cfg, () => 0);
+    expect(set).toHaveLength(6); // 1 dificil + 5 backfilled from facil
+    expect(new Set(set.map((q) => q.id)).size).toBe(6); // no repeats
+  });
+
+  it("returns the whole pool (sorted) when it is smaller than numQuestions", () => {
+    const tiny: Question[] = [
+      { id: "a", category: "inversiones", difficulty: "facil", type: "boolean", correct: true, prompt: "p", explanation: "e" },
+      { id: "b", category: "inversiones", difficulty: "media", type: "boolean", correct: true, prompt: "p", explanation: "e" },
+    ];
+    const cfg: ContestConfig = { numQuestions: 10, categories: ["inversiones"], difficultyDist: DEFAULT_DIST };
+    expect(assembleSet(tiny, cfg, () => 0)).toHaveLength(2);
   });
 });

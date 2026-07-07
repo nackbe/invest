@@ -23,4 +23,7 @@ describe("computePoints", () => {
   it("uses default base per difficulty", () => {
     expect(DEFAULT_BASE).toEqual({ facil: 100, media: 200, dificil: 300 });
   });
+  it("honors a custom base table", () => {
+    expect(computePoints("facil", { correct: true, ratio: 1 }, 20, 20, { facil: 50, media: 50, dificil: 50 })).toBe(50);
+  });
 });

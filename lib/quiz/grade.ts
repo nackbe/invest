@@ -24,6 +24,7 @@ export function grade(question: Question, answer: Answer): GradeResult {
     }
     case "match": {
       if (answer.type !== "match") return R(false);
+      // answer.map está keyed pair-id → pair-id; correcto cuando cada par apunta a su propio id
       const total = question.pairs.length;
       const hits = question.pairs.filter((p) => answer.map[p.id] === p.id).length;
       return { correct: hits === total, ratio: total ? hits / total : 0 };
