@@ -1,5 +1,5 @@
-import { Simulator } from "@/components/simulator/Simulator";
+import { ParticipantFlow } from "@/components/participant/ParticipantFlow";
 
 export default function Home() {
-  return <Simulator />;
+  return <ParticipantFlow />;
 }

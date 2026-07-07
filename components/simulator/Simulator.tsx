@@ -27,8 +27,8 @@ function Card({ children }: { children: React.ReactNode }) {
   return <section className="rounded-2xl border border-neutral-800 bg-neutral-950 p-4">{children}</section>;
 }
 
-export function Simulator() {
-  const { state, patch, setState, input, result, realResult, reroll } = useSimulator();
+export function Simulator({ sim }: { sim: ReturnType<typeof useSimulator> }) {
+  const { state, patch, setState, input, result, realResult, reroll } = sim;
 
   const hasUSD = input.products.some((p) => p.currency === "USD");
   const hasVolatile = input.products.some((p) => p.rateModel === "volatile");
