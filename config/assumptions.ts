@@ -39,7 +39,7 @@ export const FONDO: Product = {
   rateModel: "fixed",
   annualRate: 0.08, // 8% E.A. ilustrativo
   compounding: "monthly",
-  color: "#22c55e", // verde
+  color: "#16a34a", // verde (validado banda oscura)
 };
 
 /** Acciones (renta variable local, COP) — volátil (§6.6). */
@@ -51,7 +51,7 @@ export const ACCIONES: Product = {
   annualRate: 0.12, // media esperada 12% E.A.
   volatility: 0.2, // desviación anual
   compounding: "monthly",
-  color: "#f59e0b", // ámbar
+  color: "#d97706", // ámbar (validado banda oscura)
 };
 
 /** Stablecoin USD (staking / reward) — ~6% E.A. variable, valor en COP depende del dólar (§6.6). */
@@ -62,7 +62,7 @@ export const STABLECOIN: Product = {
   rateModel: "reward",
   annualRate: 0.06, // "hasta 6% E.A." — DATO QUE CADUCA, verificar (§11 Q4)
   compounding: "monthly",
-  color: "#14b8a6", // teal
+  color: "#0d9488", // teal (validado banda oscura)
 };
 
 /** S&P 500 (USD) — media largo plazo ~10% USD, volátil + efecto dólar (§6.6). */
@@ -109,3 +109,20 @@ export const DISCLAIMER =
 
 /** ⚠️ Dato que caduca — verificar antes de cada sesión (§11 Q4). */
 export const WENIA_REWARD_NOTE = "Recompensa Wenia (USDW): hasta 6% E.A. — verificar antes de la sesión.";
+
+// ---------------------------------------------------------------------------
+// Tokens de gráfico (tema oscuro; paleta categórica validada CVD)
+// ---------------------------------------------------------------------------
+
+export const CHART = {
+  contributed: "#9ca3af", // "lo que pusiste" (gris, recto) — vista gris-vs-verde §7.2
+  gained: "#16a34a", // "lo que ganó solo" (verde, exponencial)
+  favor: "#16a34a", // dólar a favor (+d) — abanico §7.3
+  estable: "#9ca3af", // dólar estable (0)
+  contra: "#f43f5e", // dólar en contra (−d)
+  expected: "#3b82f6", // línea esperada (media) — camino real §7.4
+  real: "#d97706", // un camino real volátil
+  grid: "rgba(255,255,255,0.06)", // rejilla recesiva
+  tick: "#a1a1aa", // texto de ejes (zinc-400)
+  surface: "#0a0a0a", // fondo del canvas (coincide con tema)
+} as const;
