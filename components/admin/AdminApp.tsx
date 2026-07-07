@@ -5,7 +5,7 @@ import { useSession } from "@/lib/useSession";
 import { DEFAULT_DIST } from "@/lib/quiz/assemble";
 import type { Category } from "@/lib/quiz/types";
 
-const CATS: Category[] = ["inversiones", "mundial", "curiosos", "geografia"];
+const CATS: Category[] = ["inversiones", "mundial", "curiosos", "geografia", "arte", "salud", "gastronomia"];
 
 export function AdminApp() {
   const [authed, setAuthed] = useState(false);
