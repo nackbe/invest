@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Invierte
 
-## Getting Started
+App web para una **capacitación de inversión práctica** (es-CO, COP). Mobile-first,
+tema oscuro. El corazón es el **motor de simulación** (flujo de caja mes a mes con
+tasa efectiva mensual `i_mes = (1+EA)^(1/12) − 1`).
 
-First, run the development server:
+## Rutas
+
+| Ruta | Modo |
+|------|------|
+| `/` | Participante — simulador (simple/intermedio/experto), comparador, metas, plan |
+| `/present` | Presentador — 12 pantallas, navegación con flechas, QR, print-to-PDF |
+| `/quiz` | Trivia autoevaluada (20 preguntas) |
+
+## Desarrollo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm test           # motor + helpers (vitest)
+npm run build      # build de producción
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Stack (v1)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Next.js 14 (App Router) · TypeScript · Tailwind · chart.js · html-to-image · qrcode.
+Sin backend, sin BD: el estado vive en React y en los parámetros de URL.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> Las tasas son **ilustrativas y editables** (`config/assumptions.ts`), nunca una
+> promesa. No es asesoría financiera. La recompensa de Wenia (quiz Q4) **caduca**:
+> verificar antes de cada sesión.
 
-## Learn More
+## Deploy (Vercel)
 
-To learn more about Next.js, take a look at the following resources:
+Sin variables de entorno. Detección automática de Next.js.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Opción A — CLI
+npx vercel login
+npx vercel --prod
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Opción B — GitHub
+# 1) push del repo a GitHub
+# 2) Import en vercel.com → Deploy (sin configuración extra)
+```
