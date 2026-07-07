@@ -28,7 +28,7 @@ export const SALUD: Question[] = [
     difficulty: "facil",
     type: "text",
     prompt: "¿Qué vitamina produce el cuerpo gracias a la exposición a la luz solar?",
-    accept: ["vitamina d", "la vitamina d"],
+    accept: ["vitamina d", "la vitamina d", "vit d", "vitamina d3"],
     explanation: "La piel produce vitamina D cuando se expone a la luz solar; esta vitamina ayuda a absorber el calcio.",
   },
   {
@@ -86,7 +86,7 @@ export const SALUD: Question[] = [
     difficulty: "media",
     type: "text",
     prompt: "¿Cómo se llaman los órganos pares que filtran la sangre y producen la orina?",
-    accept: ["los rinones", "rinones", "riñones", "los riñones"],
+    accept: ["los rinones", "rinones", "riñones", "los riñones", "riñon", "rinon"],
     explanation: "Los riñones filtran la sangre, eliminan desechos y producen la orina.",
   },
   {
@@ -151,7 +151,7 @@ export const SALUD: Question[] = [
     difficulty: "dificil",
     type: "text",
     prompt: "¿Cómo se llama la proteína de los glóbulos rojos encargada de transportar el oxígeno?",
-    accept: ["hemoglobina", "la hemoglobina"],
+    accept: ["hemoglobina", "la hemoglobina", "proteina hemoglobina"],
     explanation: "La hemoglobina es la proteína presente en los glóbulos rojos que transporta el oxígeno por el cuerpo.",
   },
   {

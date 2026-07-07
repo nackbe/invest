@@ -34,7 +34,7 @@ export const INVERSIONES: Question[] = [
     difficulty: "facil",
     type: "text",
     prompt: "¿Con qué sigla se conoce a un Fondo de Inversión Colectiva en Colombia?",
-    accept: ["FIC", "Fondo de Inversion Colectiva", "Fondo de Inversión Colectiva"],
+    accept: ["FIC", "Fondo de Inversion Colectiva", "Fondo de Inversión Colectiva", "un fic", "fondo colectivo"],
     explanation:
       "Un FIC reúne el dinero de muchos inversionistas para invertirlo de forma conjunta, gestionado por una entidad autorizada.",
   },
@@ -70,7 +70,7 @@ export const INVERSIONES: Question[] = [
     difficulty: "facil",
     type: "text",
     prompt: "¿Qué sigla usamos para referirnos a un fondo cotizado en bolsa que replica un índice?",
-    accept: ["ETF", "Exchange Traded Fund"],
+    accept: ["ETF", "Exchange Traded Fund", "fondo cotizado", "fondo cotizado en bolsa"],
     explanation:
       "Un ETF es un fondo que cotiza en bolsa como una acción y normalmente replica el comportamiento de un índice o canasta de activos.",
   },
@@ -128,7 +128,7 @@ export const INVERSIONES: Question[] = [
     difficulty: "media",
     type: "text",
     prompt: "¿Cómo se conoce a las criptomonedas diseñadas para mantener un valor estable, usualmente ligado al dólar?",
-    accept: ["stablecoins", "stablecoin", "monedas estables"],
+    accept: ["stablecoins", "stablecoin", "monedas estables", "moneda estable", "criptomoneda estable"],
     explanation:
       "Las stablecoins buscan mantener una paridad fija (por ejemplo 1 a 1 con el dólar) respaldadas por reservas u otros mecanismos.",
   },
@@ -225,7 +225,7 @@ export const INVERSIONES: Question[] = [
     difficulty: "dificil",
     type: "text",
     prompt: "¿Cómo se llama la estrategia de invertir un monto fijo periódicamente sin importar el precio del activo, para promediar el costo de compra?",
-    accept: ["costo promedio en dolares", "costo promedio en dólares", "dollar cost averaging", "promediar costo"],
+    accept: ["costo promedio en dolares", "costo promedio en dólares", "dollar cost averaging", "promediar costo", "dca", "costo promedio", "promediar el costo", "dollar cost average"],
     explanation:
       "Esta estrategia (dollar-cost averaging) reduce el impacto de la volatilidad porque compras más unidades cuando el precio baja y menos cuando sube.",
   },

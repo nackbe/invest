@@ -28,7 +28,7 @@ export const ARTE: Question[] = [
     difficulty: "facil",
     type: "text",
     prompt: "¿Qué pintor neerlandés pintó la obra 'La noche estrellada'?",
-    accept: ["van gogh", "vincent van gogh"],
+    accept: ["van gogh", "vincent van gogh", "gogh", "vincent willem van gogh"],
     explanation: "Vincent van Gogh pintó 'La noche estrellada' en 1889, durante su estancia en un sanatorio en Francia.",
   },
   {
@@ -56,7 +56,7 @@ export const ARTE: Question[] = [
     difficulty: "facil",
     type: "text",
     prompt: "¿Cómo se apellida el pintor y escultor colombiano famoso por sus figuras voluminosas ('gordas')?",
-    accept: ["botero", "fernando botero"],
+    accept: ["botero", "fernando botero", "fernando botero angulo"],
     explanation: "Fernando Botero es un artista colombiano reconocido mundialmente por su estilo de figuras voluminosas, conocido como 'boterismo'.",
   },
   // ---- MEDIA ----
@@ -152,7 +152,7 @@ export const ARTE: Question[] = [
     difficulty: "dificil",
     type: "text",
     prompt: "¿Qué actriz interpretó a la reina Isabel II en las dos primeras temporadas de la serie 'The Crown'?",
-    accept: ["claire foy"],
+    accept: ["claire foy", "foy"],
     explanation: "Claire Foy interpretó a la reina Isabel II en las temporadas 1 y 2 de 'The Crown'; luego el papel pasó a Olivia Colman y después a Imelda Staunton.",
   },
   {

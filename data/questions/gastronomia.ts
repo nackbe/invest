@@ -28,7 +28,7 @@ export const GASTRONOMIA: Question[] = [
     difficulty: "facil",
     type: "text",
     prompt: "¿Cómo se llama la técnica de cocinar alimentos sumergidos en agua a altas temperaturas?",
-    accept: ["hervir", "hervido"],
+    accept: ["hervir", "hervido", "ebullicion", "hervir en agua", "cocinar hirviendo"],
     explanation: "Hervir es la técnica de cocción que consiste en sumergir alimentos en agua llevada a altas temperaturas.",
   },
   {
@@ -86,7 +86,7 @@ export const GASTRONOMIA: Question[] = [
     difficulty: "media",
     type: "text",
     prompt: "¿Cómo se llama la salsa italiana hecha con albahaca, piñones, ajo, aceite de oliva y queso parmesano?",
-    accept: ["pesto", "salsa pesto"],
+    accept: ["pesto", "salsa pesto", "pesto genoves", "salsa pesto genoves"],
     explanation: "El pesto es una salsa originaria de Génova, Italia, elaborada tradicionalmente con albahaca, piñones, ajo, aceite de oliva y queso parmesano.",
   },
   {

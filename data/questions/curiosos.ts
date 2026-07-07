@@ -27,7 +27,7 @@ export const CURIOSOS: Question[] = [
     difficulty: "facil",
     type: "text",
     prompt: "¿Cuál es el planeta más cercano al Sol?",
-    accept: ["Mercurio"],
+    accept: ["Mercurio", "el planeta mercurio", "planeta mercurio"],
     explanation: "Mercurio es el planeta más pequeño y más cercano al Sol en el sistema solar.",
   },
   {
@@ -55,7 +55,7 @@ export const CURIOSOS: Question[] = [
     difficulty: "facil",
     type: "text",
     prompt: "¿Qué animal es conocido como 'el rey de la selva'?",
-    accept: ["el leon", "el león", "leon", "león"],
+    accept: ["el leon", "el león", "leon", "león", "el rey leon", "leon africano"],
     explanation: "El león es apodado 'el rey de la selva' aunque en realidad vive principalmente en sabanas, no en selvas.",
   },
   {
@@ -94,7 +94,7 @@ export const CURIOSOS: Question[] = [
     difficulty: "media",
     type: "text",
     prompt: "¿Qué gas respiramos principalmente para vivir, presente en el aire?",
-    accept: ["oxigeno", "oxígeno"],
+    accept: ["oxigeno", "oxígeno", "el oxigeno", "gas oxigeno"],
     explanation: "El oxígeno es el gas que nuestras células necesitan para producir energía a través de la respiración celular.",
   },
   {
@@ -169,7 +169,7 @@ export const CURIOSOS: Question[] = [
     difficulty: "dificil",
     type: "text",
     prompt: "¿Cómo se llama el proceso mediante el cual las plantas transforman luz solar en energía química?",
-    accept: ["fotosintesis", "fotosíntesis"],
+    accept: ["fotosintesis", "fotosíntesis", "la fotosintesis", "proceso de fotosintesis"],
     explanation: "La fotosíntesis permite a las plantas usar luz solar, agua y CO2 para producir su propio alimento y liberar oxígeno.",
   },
   {
