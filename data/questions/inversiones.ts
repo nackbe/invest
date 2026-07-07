@@ -31,7 +31,7 @@ export const INVERSIONES: Question[] = [
   {
     id: "inv-003",
     category: "inversiones",
-    difficulty: "facil",
+    difficulty: "media",
     type: "text",
     prompt: "¿Con qué sigla se conoce a un Fondo de Inversión Colectiva en Colombia?",
     accept: ["FIC", "Fondo de Inversion Colectiva", "Fondo de Inversión Colectiva", "un fic", "fondo colectivo"],
@@ -67,7 +67,7 @@ export const INVERSIONES: Question[] = [
   {
     id: "inv-006",
     category: "inversiones",
-    difficulty: "facil",
+    difficulty: "media",
     type: "text",
     prompt: "¿Qué sigla usamos para referirnos a un fondo cotizado en bolsa que replica un índice?",
     accept: ["ETF", "Exchange Traded Fund", "fondo cotizado", "fondo cotizado en bolsa"],
@@ -77,7 +77,7 @@ export const INVERSIONES: Question[] = [
   {
     id: "inv-007",
     category: "inversiones",
-    difficulty: "facil",
+    difficulty: "media",
     type: "boolean",
     prompt: "¿El interés compuesto se calcula solo sobre el capital inicial, sin incluir los intereses ya ganados?",
     correct: false,
@@ -135,7 +135,7 @@ export const INVERSIONES: Question[] = [
   {
     id: "inv-012",
     category: "inversiones",
-    difficulty: "media",
+    difficulty: "dificil",
     type: "single",
     prompt: "¿Qué es el 'staking' en el mundo cripto?",
     options: [
@@ -248,7 +248,7 @@ export const INVERSIONES: Question[] = [
   {
     id: "inv-020",
     category: "inversiones",
-    difficulty: "dificil",
+    difficulty: "media",
     type: "order",
     prompt: "Ordena de MÁS a MENOS líquido: cuenta de ahorros, CDT a 360 días, un apartamento.",
     items: [
@@ -274,5 +274,86 @@ export const INVERSIONES: Question[] = [
     correctIndex: 1,
     explanation:
       "El riesgo país refleja la probabilidad de que factores macroeconómicos, políticos o institucionales de una nación impacten negativamente las inversiones hechas allí.",
+  },
+  // ---- DIFICIL (nuevas) ----
+  {
+    id: "inv-022",
+    category: "inversiones",
+    difficulty: "dificil",
+    type: "single",
+    prompt: "¿Qué mide la Tasa Interna de Retorno (TIR) de una inversión?",
+    options: [
+      "La tasa de descuento que hace que el Valor Presente Neto (VPN) de los flujos sea igual a cero",
+      "El valor nominal de un bono al vencimiento",
+      "La inflación acumulada durante el periodo de la inversión",
+      "El impuesto que se paga sobre las utilidades obtenidas",
+    ],
+    correctIndex: 0,
+    explanation:
+      "La TIR es la tasa de descuento con la cual el Valor Presente Neto (VPN) de todos los flujos de caja de un proyecto se vuelve exactamente cero; se usa para comparar la rentabilidad esperada de distintos proyectos.",
+  },
+  {
+    id: "inv-023",
+    category: "inversiones",
+    difficulty: "dificil",
+    type: "text",
+    prompt: "¿Cómo se llama la orden bursátil que solo se ejecuta al precio que tú especificas (o uno mejor), a diferencia de la orden de mercado que se ejecuta de inmediato al mejor precio disponible?",
+    accept: ["orden limite", "orden límite", "orden de limite", "orden de límite", "limit order"],
+    explanation:
+      "La orden límite fija un precio máximo (compra) o mínimo (venta) al que estás dispuesto a operar; solo se ejecuta si el mercado alcanza ese precio, mientras que la orden de mercado se ejecuta ya, al mejor precio disponible.",
+  },
+  {
+    id: "inv-024",
+    category: "inversiones",
+    difficulty: "dificil",
+    type: "boolean",
+    prompt: "¿En Colombia, la utilidad por vender acciones a través de la bolsa de valores puede estar exenta de impuesto de renta si la venta no supera el 10% de las acciones en circulación de esa empresa en un año?",
+    correct: true,
+    explanation:
+      "El Estatuto Tributario colombiano (art. 36-1) establece que la utilidad en la enajenación de acciones inscritas en bolsa no constituye renta ni ganancia ocasional si un mismo beneficiario real no vende más del 10% de las acciones en circulación de la sociedad durante el mismo año gravable.",
+  },
+  {
+    id: "inv-025",
+    category: "inversiones",
+    difficulty: "dificil",
+    type: "order",
+    prompt: "Ordena estos tipos de Fondos de Inversión Colectiva (FIC) de MÁS a MENOS líquidos: FIC abierto sin pacto de permanencia, FIC abierto con pacto de permanencia, FIC cerrado.",
+    items: [
+      { id: "abierto_sin", label: "FIC abierto sin pacto de permanencia" },
+      { id: "abierto_con", label: "FIC abierto con pacto de permanencia" },
+      { id: "cerrado", label: "FIC cerrado" },
+    ],
+    explanation:
+      "Un FIC abierto sin pacto permite retirar el dinero en cualquier momento; uno con pacto de permanencia impone un plazo o penalidad por retiro anticipado; un FIC cerrado solo permite redimir la inversión al vencimiento del fondo o vendiendo la participación en el mercado secundario.",
+  },
+  {
+    id: "inv-026",
+    category: "inversiones",
+    difficulty: "dificil",
+    type: "single",
+    prompt: "¿Qué mide el 'drawdown' de una inversión?",
+    options: [
+      "La caída porcentual desde el punto más alto (pico) hasta el punto más bajo (valle) en el valor de una inversión",
+      "La ganancia total acumulada desde el inicio de la inversión",
+      "El promedio simple de la rentabilidad anual",
+      "El monto total de comisiones cobradas por el fondo",
+    ],
+    correctIndex: 0,
+    explanation:
+      "El drawdown mide qué tanto ha caído el valor de una inversión desde su máximo histórico reciente hasta su punto más bajo posterior, y es una medida clave del riesgo de pérdida que puede sufrir un inversionista.",
+  },
+  {
+    id: "inv-027",
+    category: "inversiones",
+    difficulty: "dificil",
+    type: "match",
+    prompt: "Relaciona cada término financiero con su definición.",
+    pairs: [
+      { id: "sharpe", left: "Ratio de Sharpe", right: "Mide el retorno obtenido por unidad de riesgo asumido" },
+      { id: "duracion", left: "Duración de un bono", right: "Mide la sensibilidad del precio del bono a cambios en la tasa de interés" },
+      { id: "pbasico", left: "Punto básico", right: "Equivale a 0,01% (una centésima de punto porcentual)" },
+    ],
+    explanation:
+      "El ratio de Sharpe compara la rentabilidad obtenida frente al riesgo (volatilidad) asumido; la duración estima cuánto cae el precio de un bono ante un alza de tasas; y un punto básico es la unidad mínima usada para hablar de cambios pequeños en tasas de interés.",
   },
 ];
