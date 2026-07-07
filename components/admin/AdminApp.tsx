@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { QRCode } from "@/components/present/QRCode";
 import { useSession } from "@/lib/useSession";
 import { usePlayers } from "@/lib/usePlayers";
+import { useRanking } from "@/lib/useRanking";
 import { DEFAULT_DIST } from "@/lib/quiz/assemble";
 import { answerText } from "@/lib/quiz/answerText";
 import type { Category, Question } from "@/lib/quiz/types";
@@ -25,6 +26,7 @@ export function AdminApp() {
   const [cfg, setCfg] = useState({ numQuestions: 12, categories: CATS, difficultyDist: DEFAULT_DIST, timerSeconds: 20 });
   const { session } = useSession(code ?? "");
   const players = usePlayers(session?.id);
+  const ranking = useRanking(session?.id);
   const [current, setCurrent] = useState<Current | null>(null);
   const [remaining, setRemaining] = useState(0);
 
@@ -129,7 +131,21 @@ export function AdminApp() {
         </div>
       )}
 
-      {phase === "ended" && <div className="rounded-2xl border border-neutral-800 p-5 text-center text-xl">Concurso terminado 🏁</div>}
+      {phase === "ended" && (
+        <div className="rounded-2xl border border-neutral-800 p-4">
+          <div className="mb-3 text-center text-2xl font-bold">🏆 Podio</div>
+          <div className="flex flex-col gap-2">
+            {ranking.map((r, i) => (
+              <div key={r.player_id} className={`flex items-center justify-between rounded-xl px-4 py-2 ${i === 0 ? "bg-emerald-500/15" : "bg-neutral-900"}`}>
+                <span><span className="mr-3 text-neutral-500">{i + 1}</span>{r.username} <span className="ml-2 text-xs text-neutral-500">({r.correct_count} ✓)</span></span>
+                <span className="font-bold tabular-nums text-emerald-400">{r.points}</span>
+              </div>
+            ))}
+            {ranking.length === 0 && <p className="text-center text-neutral-500">Sin jugadores.</p>}
+          </div>
+          <a href={`/screen/${code}`} target="_blank" className="mt-3 block text-center text-sm text-emerald-400 underline">Ver podio en proyector</a>
+        </div>
+      )}
 
       <div className="sticky bottom-4 mt-auto flex gap-2">
         <button onClick={() => control("launch")} className="flex-1 rounded-xl bg-emerald-500 py-3 font-semibold text-neutral-950">

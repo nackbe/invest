@@ -9,6 +9,7 @@ import type { PublicQuestion } from "@/lib/quiz/public";
 import type { Question } from "@/lib/quiz/types";
 
 type CurrentQuestion = {
+  phase?: string;
   question: (PublicQuestion & { explanation?: string }) & Partial<Question>;
   timerSeconds?: number;
   startedAt?: string;
@@ -52,7 +53,7 @@ export function ScreenApp({ code }: { code: string }) {
         <h1 className="max-w-5xl text-6xl font-bold leading-tight">{current.question.prompt}</h1>
       </>)}
 
-      {phase === "reveal" && current?.question && (<>
+      {phase === "reveal" && current?.phase === "reveal" && current?.question && (<>
         <Media q={current.question} />
         <h2 className="max-w-4xl text-4xl font-semibold">{current.question.prompt}</h2>
         <div className="rounded-2xl border border-emerald-500/50 bg-emerald-500/10 px-8 py-4 text-3xl font-bold text-emerald-300">

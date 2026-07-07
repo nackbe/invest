@@ -9,6 +9,7 @@ import type { Answer, Question } from "@/lib/quiz/types";
 import type { PublicQuestion } from "@/lib/quiz/public";
 
 type CurrentQuestion = {
+  phase?: string;
   question: PublicQuestion & { explanation: string };
   timerSeconds: number;
   startedAt: string;
@@ -59,7 +60,7 @@ export function PlayerApp({ initialCode }: { initialCode: string }) {
         <QuestionView question={current.question} timerSeconds={current.timerSeconds} startedAt={current.startedAt} onSubmit={submit} />
       )}
       {phase === "question" && answered && <p className="text-center text-xl">Respuesta enviada ✓ (+{answered.points})</p>}
-      {phase === "reveal" && current?.question && (
+      {phase === "reveal" && current?.phase === "reveal" && current?.question && (
         <div className="flex flex-col gap-3 text-center">
           <div className={`text-2xl font-bold ${answered?.correct ? "text-emerald-400" : "text-rose-400"}`}>
             {answered ? (answered.correct ? `¡Correcto! +${answered.points}` : "Incorrecto") : "Respuesta"}

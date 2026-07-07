@@ -47,14 +47,17 @@ describe("assembleSet", () => {
     expect(count("dificil")).toBeGreaterThanOrEqual(count("facil"));
   });
 
-  it("orders grouped by category (in config order), difficulty ascending within", () => {
-    const set = assembleSet(bank(), cfg, zero);
-    const firstGeo = set.findIndex((q) => q.category === "geografia");
-    const lastInv = set.map((q) => q.category).lastIndexOf("inversiones");
-    expect(lastInv).toBeLessThan(firstGeo);
-    const invDifs = set.filter((q) => q.category === "inversiones").map((q) => q.difficulty);
-    const rank = { facil: 0, media: 1, dificil: 2 } as const;
-    for (let i = 1; i < invDifs.length; i++) expect(rank[invDifs[i]]).toBeGreaterThanOrEqual(rank[invDifs[i - 1]]);
+  it("mixes categories (does NOT group all of one category together)", () => {
+    // con un rng pseudo-aleatorio, las categorías deben quedar intercaladas,
+    // no todos los 'inversiones' antes de todos los 'geografia'.
+    let seed = 7;
+    const rng = () => ((seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff);
+    const set = assembleSet(bank(), { ...cfg, numQuestions: 12 }, rng);
+    const cats = set.map((q) => q.category);
+    const lastInv = cats.lastIndexOf("inversiones");
+    const firstGeo = cats.indexOf("geografia");
+    // si estuviera agrupado por categoría, lastInv < firstGeo siempre; aquí NO debe cumplirse
+    expect(lastInv < firstGeo).toBe(false);
   });
 
   it("does not repeat questions", () => {

@@ -9,7 +9,6 @@ export type ContestConfig = {
 };
 
 const DIFS: Difficulty[] = ["facil", "media", "dificil"];
-const RANK: Record<Difficulty, number> = { facil: 0, media: 1, dificil: 2 };
 
 /** Reparte numQuestions por porcentaje; el sobrante de redondeo va al de mayor resto (largest remainder). */
 export function difficultyQuotas(
@@ -74,10 +73,10 @@ export function assembleSet(bank: Question[], config: ContestConfig, rng: () => 
     }
   }
 
-  const catOrder = new Map(config.categories.map((c, i) => [c, i]));
-  return picked.sort((a, b) => {
-    const ca = catOrder.get(a.category) ?? 99;
-    const cb = catOrder.get(b.category) ?? 99;
-    return ca !== cb ? ca - cb : RANK[a.difficulty] - RANK[b.difficulty];
-  });
+  // Orden ALEATORIO mezclando temas (no agrupar por categoría) — Fisher-Yates con rng.
+  for (let i = picked.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [picked[i], picked[j]] = [picked[j], picked[i]];
+  }
+  return picked;
 }
