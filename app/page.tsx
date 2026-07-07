@@ -1,8 +1,5 @@
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-3 p-6 text-center">
-      <h1 className="text-4xl font-bold tracking-tight">Trivia</h1>
-      <p className="text-neutral-500">En construcción.</p>
-    </main>
-  );
+import { PlayerApp } from "@/components/play/PlayerApp";
+
+export default function Home({ searchParams }: { searchParams: { code?: string } }) {
+  return <PlayerApp initialCode={(searchParams.code ?? "").toUpperCase()} />;
 }

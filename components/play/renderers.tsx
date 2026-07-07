@@ -6,11 +6,13 @@ import type { PublicQuestion } from "@/lib/quiz/public";
 const btn = "w-full rounded-xl border border-neutral-700 p-4 text-lg text-left active:bg-neutral-800";
 
 export function AnswerInput({ question: q, onSubmit }: { question: PublicQuestion; onSubmit: (a: Answer) => void }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const q_: any = q;
   switch (q.type) {
     case "single":
       return (
         <div className="flex flex-col gap-2">
-          {(q as any).options.map((o: string, i: number) => (
+          {q_.options.map((o: string, i: number) => (
             <button key={i} className={btn} onClick={() => onSubmit({ type: "single", index: i })}>
               <span className="mr-2 text-neutral-500">{String.fromCharCode(97 + i)}.</span>{o}
             </button>
@@ -25,9 +27,9 @@ export function AnswerInput({ question: q, onSubmit }: { question: PublicQuestio
         </div>
       );
     case "text": return <TextInput onSubmit={onSubmit} />;
-    case "order": return <OrderInput items={(q as any).items} onSubmit={onSubmit} />;
-    case "match": return <MatchInput lefts={(q as any).lefts} rights={(q as any).rights} onSubmit={onSubmit} />;
-    case "hotspot": return <HotspotInput imageUrl={(q as any).imageUrl} onSubmit={onSubmit} />;
+    case "order": return <OrderInput items={q_.items} onSubmit={onSubmit} />;
+    case "match": return <MatchInput lefts={q_.lefts} rights={q_.rights} onSubmit={onSubmit} />;
+    case "hotspot": return <HotspotInput imageUrl={q_.imageUrl} onSubmit={onSubmit} />;
     default: return null;
   }
 }

@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Invierte",
-  description: "Capacitación de inversión práctica",
+  title: "Trivia en vivo",
+  description: "Trivia multijugador en vivo.",
 };
 
 export const viewport: Viewport = {
