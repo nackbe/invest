@@ -16,11 +16,14 @@ export async function GET(_req: Request, { params }: { params: { code: string } 
   const { data: sq } = await db.from("session_questions").select("question_id").eq("session_id", s.id).eq("order_index", s.current_index).single();
   const q = QUESTION_BANK.find((x) => x.id === sq?.question_id);
   if (!q) return NextResponse.json({ error: "question missing" }, { status: 500 });
+  const { count: answered } = await db
+    .from("answers").select("*", { count: "exact", head: true })
+    .eq("session_id", s.id).eq("question_id", q.id);
   if (s.phase === "reveal") {
-    return NextResponse.json({ phase: s.phase, index: s.current_index, question: q });
+    return NextResponse.json({ phase: s.phase, index: s.current_index, question: q, answered: answered ?? 0 });
   }
   return NextResponse.json({
-    phase: s.phase, index: s.current_index,
+    phase: s.phase, index: s.current_index, answered: answered ?? 0,
     question: toPublic(q), timerSeconds: s.config.timerSeconds, startedAt: s.question_started_at,
   });
 }

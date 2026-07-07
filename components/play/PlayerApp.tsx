@@ -4,7 +4,8 @@ import { useSession } from "@/lib/useSession";
 import { usePlayer } from "@/lib/usePlayer";
 import { getBrowserClient } from "@/lib/supabase/browser";
 import { QuestionView } from "./QuestionView";
-import type { Answer } from "@/lib/quiz/types";
+import { answerText } from "@/lib/quiz/answerText";
+import type { Answer, Question } from "@/lib/quiz/types";
 import type { PublicQuestion } from "@/lib/quiz/public";
 
 type CurrentQuestion = {
@@ -60,7 +61,10 @@ export function PlayerApp({ initialCode }: { initialCode: string }) {
       {phase === "question" && answered && <p className="text-center text-xl">Respuesta enviada ✓ (+{answered.points})</p>}
       {phase === "reveal" && current?.question && (
         <div className="flex flex-col gap-3 text-center">
-          <div className={answered?.correct ? "text-emerald-400" : "text-rose-400"}>{answered ? (answered.correct ? "¡Correcto!" : "Incorrecto") : "Respuesta"}</div>
+          <div className={`text-2xl font-bold ${answered?.correct ? "text-emerald-400" : "text-rose-400"}`}>
+            {answered ? (answered.correct ? `¡Correcto! +${answered.points}` : "Incorrecto") : "Respuesta"}
+          </div>
+          <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-3 text-emerald-300">{answerText(current.question as Question)}</div>
           <p className="text-neutral-300">{current.question.explanation}</p>
         </div>
       )}

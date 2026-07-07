@@ -1,9 +1,20 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { QRCode } from "@/components/present/QRCode";
 import { useSession } from "@/lib/useSession";
+import { usePlayers } from "@/lib/usePlayers";
 import { DEFAULT_DIST } from "@/lib/quiz/assemble";
-import type { Category } from "@/lib/quiz/types";
+import { answerText } from "@/lib/quiz/answerText";
+import type { Category, Question } from "@/lib/quiz/types";
+
+type Current = {
+  phase: string;
+  index: number;
+  answered?: number;
+  timerSeconds?: number;
+  startedAt?: string;
+  question?: Question & { explanation?: string };
+};
 
 const CATS: Category[] = ["inversiones", "mundial", "curiosos", "geografia", "arte", "salud", "gastronomia"];
 
@@ -13,6 +24,28 @@ export function AdminApp() {
   const [code, setCode] = useState<string | null>(null);
   const [cfg, setCfg] = useState({ numQuestions: 12, categories: CATS, difficultyDist: DEFAULT_DIST, timerSeconds: 20 });
   const { session } = useSession(code ?? "");
+  const players = usePlayers(session?.id);
+  const [current, setCurrent] = useState<Current | null>(null);
+  const [remaining, setRemaining] = useState(0);
+
+  // pregunta actual (poll: refresca conteo de respondidos y el reveal)
+  useEffect(() => {
+    if (!code || !session || session.phase === "lobby") { setCurrent(null); return; }
+    const load = () => fetch(`/api/session/${code}/current`, { cache: "no-store" }).then((r) => r.json()).then(setCurrent);
+    load();
+    const iv = setInterval(load, 1500);
+    return () => clearInterval(iv);
+  }, [code, session?.phase, session?.current_index, session]);
+
+  // cuenta regresiva del timer durante la pregunta
+  useEffect(() => {
+    if (current?.phase !== "question" || !current.startedAt || !current.timerSeconds) return;
+    const t = setInterval(() => {
+      const left = current.timerSeconds! - (Date.now() - new Date(current.startedAt!).getTime()) / 1000;
+      setRemaining(Math.max(0, left));
+    }, 200);
+    return () => clearInterval(t);
+  }, [current?.phase, current?.startedAt, current?.timerSeconds]);
 
   async function login() {
     const r = await fetch("/api/admin/login", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ passcode }) });
@@ -51,18 +84,61 @@ export function AdminApp() {
     </main>
   );
 
+  const phase = session?.phase ?? "lobby";
+  const inLobby = phase === "lobby";
+
   return (
-    <main className="mx-auto flex min-h-screen max-w-md flex-col items-center justify-center gap-5 p-6 text-center">
-      <div className="text-sm text-neutral-500">Código</div>
-      <div className="text-5xl font-bold tracking-widest">{code}</div>
-      <QRCode value={`${typeof window !== "undefined" ? window.location.origin : ""}/?code=${code}`} size={180} />
-      <div className="text-neutral-400">Fase: {session?.phase ?? "…"} · pregunta {(session?.current_index ?? -1) + 1}</div>
-      <div className="flex gap-3">
-        <button onClick={() => control("launch")} className="rounded-xl bg-emerald-500 px-5 py-3 font-semibold text-neutral-950">Siguiente ▶</button>
-        <button onClick={() => control("reveal")} className="rounded-xl border border-neutral-700 px-5 py-3">Revelar</button>
-        <button onClick={() => control("end")} className="rounded-xl border border-rose-700 px-5 py-3 text-rose-300">Terminar</button>
+    <main className="mx-auto flex min-h-screen max-w-md flex-col gap-4 p-5">
+      <div className="flex items-center justify-between">
+        <div>
+          <div className="text-xs text-neutral-500">Código</div>
+          <div className="text-3xl font-bold tracking-widest">{code}</div>
+        </div>
+        <div className="text-right text-sm text-neutral-400">
+          <div>{players.length} jugador{players.length === 1 ? "" : "es"}</div>
+          <div className="text-xs">Fase: {phase} · #{(session?.current_index ?? -1) + 1}</div>
+        </div>
       </div>
-      <a href={`/screen/${code}`} target="_blank" className="text-sm text-neutral-500 underline">Abrir proyector</a>
+
+      {inLobby && (
+        <div className="flex flex-col items-center gap-4 rounded-2xl border border-neutral-800 p-5">
+          <QRCode value={`${typeof window !== "undefined" ? window.location.origin : ""}/?code=${code}`} size={160} />
+          <div className="text-sm text-neutral-400">Escanea para entrar · {players.length} conectado{players.length === 1 ? "" : "s"}</div>
+          <div className="flex flex-wrap justify-center gap-2">
+            {players.map((p) => <span key={p.id} className="rounded-full border border-neutral-700 px-3 py-1 text-sm">{p.username}</span>)}
+          </div>
+        </div>
+      )}
+
+      {!inLobby && current?.question && (
+        <div className="rounded-2xl border border-neutral-800 p-4">
+          <div className="mb-2 flex items-center justify-between text-sm text-neutral-500">
+            <span>{current.question.category} · {current.question.difficulty}</span>
+            {current.phase === "question" && <span className="tabular-nums text-emerald-400">⏱ {Math.ceil(remaining)}s</span>}
+          </div>
+          <div className="text-lg font-semibold">{current.question.prompt}</div>
+          {current.phase === "reveal" ? (
+            <div className="mt-3 rounded-xl border border-emerald-500/50 bg-emerald-500/10 p-3">
+              <div className="text-xs text-emerald-300/70">Respuesta correcta</div>
+              <div className="font-bold text-emerald-300">{answerText(current.question)}</div>
+              {current.question.explanation && <p className="mt-1 text-sm text-neutral-400">{current.question.explanation}</p>}
+            </div>
+          ) : (
+            <div className="mt-2 text-sm text-neutral-500">Respondieron: <b className="text-neutral-200">{current.answered ?? 0}</b> / {players.length}</div>
+          )}
+        </div>
+      )}
+
+      {phase === "ended" && <div className="rounded-2xl border border-neutral-800 p-5 text-center text-xl">Concurso terminado 🏁</div>}
+
+      <div className="sticky bottom-4 mt-auto flex gap-2">
+        <button onClick={() => control("launch")} className="flex-1 rounded-xl bg-emerald-500 py-3 font-semibold text-neutral-950">
+          {inLobby ? "Empezar ▶" : "Siguiente ▶"}
+        </button>
+        {phase === "question" && <button onClick={() => control("reveal")} className="rounded-xl border border-neutral-700 px-5 py-3">Revelar</button>}
+        <button onClick={() => control("end")} className="rounded-xl border border-rose-800 px-4 py-3 text-rose-300">Fin</button>
+      </div>
+      <a href={`/screen/${code}`} target="_blank" className="text-center text-sm text-neutral-500 underline">Abrir proyector</a>
     </main>
   );
 }
