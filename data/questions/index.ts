@@ -10,5 +10,6 @@ import { CINE } from "./cine";
 import { BELLEZA } from "./belleza";
 import { HISTORIA } from "./historia";
 import { PERSONAL } from "./personal";
+import { BIZARROS } from "./bizarros";
 
-export const QUESTION_BANK: Question[] = [...INVERSIONES, ...MUNDIAL, ...CURIOSOS, ...GEOGRAFIA, ...ARTE, ...SALUD, ...GASTRONOMIA, ...CINE, ...BELLEZA, ...HISTORIA, ...PERSONAL];
+export const QUESTION_BANK: Question[] = [...INVERSIONES, ...MUNDIAL, ...CURIOSOS, ...GEOGRAFIA, ...ARTE, ...SALUD, ...GASTRONOMIA, ...CINE, ...BELLEZA, ...HISTORIA, ...PERSONAL, ...BIZARROS];

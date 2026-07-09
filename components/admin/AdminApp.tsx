@@ -19,7 +19,7 @@ type Current = {
 };
 
 // "personal" existe en el banco pero por ahora NO es seleccionable en el admin.
-const CATS: Category[] = ["inversiones", "mundial", "curiosos", "geografia", "arte", "salud", "gastronomia", "cine", "belleza", "historia"];
+const CATS: Category[] = ["inversiones", "mundial", "curiosos", "geografia", "arte", "salud", "gastronomia", "cine", "belleza", "historia", "bizarros"];
 
 export function AdminApp() {
   const [authed, setAuthed] = useState(false);
