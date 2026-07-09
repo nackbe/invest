@@ -6,6 +6,7 @@ import { usePlayers } from "@/lib/usePlayers";
 import { useRanking } from "@/lib/useRanking";
 import { DEFAULT_DIST } from "@/lib/quiz/assemble";
 import { answerText } from "@/lib/quiz/answerText";
+import { ResultsMatrix } from "./ResultsMatrix";
 import type { Category, Question } from "@/lib/quiz/types";
 
 type Current = {
@@ -17,7 +18,8 @@ type Current = {
   question?: Question & { explanation?: string };
 };
 
-const CATS: Category[] = ["inversiones", "mundial", "curiosos", "geografia", "arte", "salud", "gastronomia", "cine", "belleza", "historia", "personal"];
+// "personal" existe en el banco pero por ahora NO es seleccionable en el admin.
+const CATS: Category[] = ["inversiones", "mundial", "curiosos", "geografia", "arte", "salud", "gastronomia", "cine", "belleza", "historia"];
 
 export function AdminApp() {
   const [authed, setAuthed] = useState(false);
@@ -29,6 +31,7 @@ export function AdminApp() {
   const ranking = useRanking(session?.id);
   const [current, setCurrent] = useState<Current | null>(null);
   const [remaining, setRemaining] = useState(0);
+  const [showDetail, setShowDetail] = useState(false);
 
   // pregunta actual (poll: refresca conteo de respondidos y el reveal)
   useEffect(() => {
@@ -158,7 +161,11 @@ export function AdminApp() {
             ))}
             {ranking.length === 0 && <p className="text-center text-neutral-500">Sin jugadores.</p>}
           </div>
-          <a href={`/screen/${code}`} target="_blank" className="mt-3 block text-center text-sm text-emerald-400 underline">Ver podio en proyector</a>
+          <div className="mt-3 flex items-center justify-center gap-4 text-sm">
+            <button onClick={() => setShowDetail((v) => !v)} className="text-amber-300 underline">{showDetail ? "Ocultar detalle" : "📊 Ver detalle por pregunta"}</button>
+            <a href={`/screen/${code}`} target="_blank" className="text-emerald-400 underline">Proyector</a>
+          </div>
+          {showDetail && <div className="mt-4"><ResultsMatrix code={code} /></div>}
         </div>
       )}
 

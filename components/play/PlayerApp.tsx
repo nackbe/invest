@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSession } from "@/lib/useSession";
 import { usePlayer } from "@/lib/usePlayer";
+import { useRanking } from "@/lib/useRanking";
 import { getBrowserClient } from "@/lib/supabase/browser";
 import { QuestionView } from "./QuestionView";
 import { answerText } from "@/lib/quiz/answerText";
@@ -20,6 +21,7 @@ export function PlayerApp({ initialCode }: { initialCode: string }) {
   const [username, setUsername] = useState("");
   const { player, join } = usePlayer(code);
   const { session } = useSession(code);
+  const ranking = useRanking(session?.id);
   const [current, setCurrent] = useState<CurrentQuestion | null>(null);
   const [answered, setAnswered] = useState<{ correct: boolean; points: number } | null>(null);
 
@@ -69,8 +71,23 @@ export function PlayerApp({ initialCode }: { initialCode: string }) {
           <p className="text-neutral-300">{current.question.explanation}</p>
         </div>
       )}
-      {phase === "standings" && <p className="text-center text-xl text-neutral-300">📊 Puntuación parcial — mira la pantalla</p>}
-      {phase === "ended" && <a href={`/screen/${code}`} className="text-center text-emerald-400 underline">Ver resultados</a>}
+      {(phase === "standings" || phase === "ended") && (
+        <div className="flex flex-col gap-3">
+          <h2 className="text-center text-2xl font-bold">{phase === "ended" ? "🏆 Podio final" : "📊 Puntuación parcial"}</h2>
+          <div className="flex flex-col gap-2">
+            {ranking.map((r, i) => {
+              const me = r.player_id === player.id;
+              return (
+                <div key={r.player_id} className={`flex items-center justify-between rounded-xl px-4 py-3 ${me ? "border border-emerald-500 bg-emerald-500/15" : "bg-neutral-900"}`}>
+                  <span><span className="mr-3 text-neutral-500">{i + 1}</span>{r.username}{me && " (tú)"}</span>
+                  <span className="font-bold tabular-nums text-emerald-400">{r.points}</span>
+                </div>
+              );
+            })}
+          </div>
+          {phase === "standings" && <p className="text-center text-sm text-neutral-500">El juego continúa…</p>}
+        </div>
+      )}
     </main>
   );
 }
