@@ -356,4 +356,157 @@ export const INVERSIONES: Question[] = [
     explanation:
       "El ratio de Sharpe compara la rentabilidad obtenida frente al riesgo (volatilidad) asumido; la duración estima cuánto cae el precio de un bono ante un alza de tasas; y un punto básico es la unidad mínima usada para hablar de cambios pequeños en tasas de interés.",
   },
+  // ---- LOTE 2 (nuevas) ----
+  {
+    id: "inv-028",
+    category: "inversiones",
+    difficulty: "facil",
+    type: "single",
+    prompt: "¿Qué significa la sigla TRM en Colombia?",
+    options: [
+      "Tasa Representativa del Mercado",
+      "Tasa de Rendimiento Mensual",
+      "Tarifa de Retención Mínima",
+      "Título de Renta Mixta",
+    ],
+    correctIndex: 0,
+    explanation:
+      "La TRM (Tasa Representativa del Mercado) es el precio promedio del dólar frente al peso colombiano, calculado y certificado diariamente por la Superintendencia Financiera.",
+  },
+  {
+    id: "inv-029",
+    category: "inversiones",
+    difficulty: "facil",
+    type: "boolean",
+    prompt: "¿La Bolsa de Valores de Colombia (BVC) es el mercado donde se negocian acciones y bonos en el país?",
+    correct: true,
+    explanation:
+      "La Bolsa de Valores de Colombia (BVC) es la plataforma donde se compran y venden acciones, bonos y otros valores del mercado colombiano.",
+  },
+  {
+    id: "inv-030",
+    category: "inversiones",
+    difficulty: "media",
+    type: "text",
+    prompt: "¿Con qué sigla en inglés se conocen las finanzas descentralizadas basadas en blockchain, que permiten prestar, pedir prestado o intercambiar activos sin bancos tradicionales?",
+    accept: ["defi", "decentralized finance", "finanzas descentralizadas"],
+    explanation:
+      "DeFi (Decentralized Finance) usa contratos inteligentes en blockchain para ofrecer servicios financieros —préstamos, intercambios, ahorro— sin intermediarios tradicionales como bancos.",
+  },
+  {
+    id: "inv-031",
+    category: "inversiones",
+    difficulty: "media",
+    type: "single",
+    prompt: "¿Qué es un 'market maker' (creador de mercado) en el mercado bursátil?",
+    options: [
+      "Un participante que ofrece continuamente precios de compra y venta para dar liquidez a un activo",
+      "El regulador que fija por decreto los precios de las acciones",
+      "Un tipo de impuesto sobre las transacciones bursátiles",
+      "Un fondo que solo puede invertir en oro físico",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Los creadores de mercado colocan órdenes de compra y venta de forma constante, reduciendo la diferencia entre precios (spread) y facilitando que otros inversionistas compren o vendan con mayor rapidez.",
+  },
+  {
+    id: "inv-032",
+    category: "inversiones",
+    difficulty: "dificil",
+    type: "single",
+    prompt: "En Colombia, ¿qué entidad vigila y supervisa a los bancos, fondos, aseguradoras y el mercado bursátil?",
+    options: [
+      "Superintendencia Financiera de Colombia",
+      "Banco de la República",
+      "DIAN",
+      "Fogafín",
+    ],
+    correctIndex: 0,
+    explanation:
+      "La Superintendencia Financiera de Colombia supervisa bancos, fondos y el mercado bursátil; el Banco de la República maneja la política monetaria, la DIAN los impuestos y Fogafín protege los depósitos bancarios.",
+  },
+  {
+    id: "inv-033",
+    category: "inversiones",
+    difficulty: "facil",
+    type: "boolean",
+    prompt: "¿El Banco de la República es el banco central de Colombia?",
+    correct: true,
+    explanation:
+      "El Banco de la República es la autoridad monetaria de Colombia, encargada de controlar la inflación y emitir la moneda.",
+  },
+  {
+    id: "inv-034",
+    category: "inversiones",
+    difficulty: "media",
+    type: "order",
+    prompt: "Ordena estos productos financieros de MENOR a MAYOR riesgo típico: bonos del gobierno, acciones de empresas, criptomonedas.",
+    items: [
+      { id: "bonos_gob", label: "Bonos del gobierno" },
+      { id: "acciones", label: "Acciones de empresas" },
+      { id: "cripto", label: "Criptomonedas" },
+    ],
+    explanation:
+      "Los bonos del gobierno suelen considerarse de riesgo bajo (respaldados por el Estado), las acciones tienen riesgo y volatilidad moderados a altos, y las criptomonedas suelen presentar la mayor volatilidad y riesgo entre estos tres.",
+  },
+  {
+    id: "inv-035",
+    category: "inversiones",
+    difficulty: "dificil",
+    type: "text",
+    prompt: "¿Cómo se llama el fondo que garantiza a los ahorradores colombianos recuperar su dinero (hasta cierto monto) si un banco quiebra?",
+    accept: ["fogafin", "fogafín", "fondo de garantias de instituciones financieras", "fondo de garantías de instituciones financieras"],
+    explanation:
+      "Fogafín (Fondo de Garantías de Instituciones Financieras) asegura los depósitos de los ahorradores colombianos hasta un monto máximo por persona y por entidad, en caso de que un banco quiebre.",
+  },
+  {
+    id: "inv-036",
+    category: "inversiones",
+    difficulty: "dificil",
+    type: "match",
+    prompt: "Relaciona cada indicador económico con lo que mide.",
+    pairs: [
+      { id: "inflacion", left: "Inflación", right: "Aumento generalizado de los precios en el tiempo" },
+      { id: "trm", left: "TRM", right: "Precio promedio del dólar frente al peso colombiano" },
+      { id: "dtf", left: "DTF", right: "Tasa de interés promedio que pagan los bancos por captaciones a 90 días" },
+    ],
+    explanation:
+      "La inflación mide el alza de precios, la TRM el valor del dólar en pesos colombianos, y la DTF es una tasa de referencia basada en las captaciones a 90 días del sistema financiero, usada para fijar tasas de créditos y CDTs.",
+  },
+  {
+    id: "inv-037",
+    category: "inversiones",
+    difficulty: "media",
+    type: "boolean",
+    prompt: "¿Diversificar una cartera entre distintos activos ayuda a reducir el riesgo específico de una sola empresa o sector?",
+    correct: true,
+    explanation:
+      "Diversificar entre distintos activos reduce el riesgo no sistemático (propio de una empresa o sector), aunque no elimina el riesgo sistemático o de mercado que afecta a todos los activos por igual.",
+  },
+  {
+    id: "inv-038",
+    category: "inversiones",
+    difficulty: "facil",
+    type: "single",
+    prompt: "¿Qué significa 'invertir a largo plazo'?",
+    options: [
+      "Mantener una inversión durante varios años esperando que se valorice",
+      "Comprar y vender el mismo activo en un solo día",
+      "Invertir solo en criptomonedas",
+      "Pedir un préstamo bancario",
+    ],
+    correctIndex: 0,
+    explanation:
+      "Invertir a largo plazo implica mantener los activos durante años, lo que suele ayudar a superar la volatilidad de corto plazo y aprovechar el interés compuesto.",
+  },
+  {
+    id: "inv-039",
+    category: "inversiones",
+    difficulty: "dificil",
+    type: "text",
+    prompt: "¿Cómo se llama la práctica de usar dinero prestado (deuda) para aumentar el tamaño de una inversión y potencialmente el retorno, junto con el riesgo?",
+    accept: ["apalancamiento", "apalancamiento financiero", "leverage"],
+    explanation:
+      "El apalancamiento consiste en usar deuda para invertir un monto mayor al capital propio; puede multiplicar las ganancias, pero también las pérdidas.",
+  },
 ];
