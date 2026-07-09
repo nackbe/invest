@@ -1,0 +1,5 @@
+categoria,dificultad,tipo,pregunta,a,b,c,d,correcta,explicacion,acepta
+personal,facil,single,"¿Quién organizó la fiesta sorpresa?",Ana,Beto,Caro,Dani,B,"Beto la organizó en secreto.",
+personal,media,vf,"El equipo se fundó en 2019.",,,,,verdadero,"Sí, se fundó en 2019.",
+personal,media,text,"¿Cómo se llama la mascota de la oficina?",,,,,,"Es una gata gris.",Michi|michifu|la gata
+historia,media,single,"¿En qué año llegó el hombre a la Luna?",1965,1969,1972,1958,B,"El Apolo 11 alunizó en 1969.",
