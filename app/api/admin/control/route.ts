@@ -4,13 +4,16 @@ import { getServiceClient } from "@/lib/supabase/server";
 
 export async function POST(req: Request) {
   if (!isAdmin()) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
-  const { code, action } = (await req.json()) as { code: string; action: "launch" | "reveal" | "end" };
+  const { code, action } = (await req.json()) as { code: string; action: "launch" | "reveal" | "standings" | "end" };
   const db = getServiceClient();
   const { data: s } = await db.from("sessions").select("*").eq("code", code).single();
   if (!s) return NextResponse.json({ error: "not found" }, { status: 404 });
 
   if (action === "reveal") {
     await db.from("sessions").update({ phase: "reveal" }).eq("id", s.id);
+  } else if (action === "standings") {
+    // podio PARCIAL: muestra el ranking sin terminar el juego
+    await db.from("sessions").update({ phase: "standings" }).eq("id", s.id);
   } else if (action === "end") {
     await db.from("sessions").update({ phase: "ended", status: "ended" }).eq("id", s.id);
   } else {

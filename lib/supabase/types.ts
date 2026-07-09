@@ -1,6 +1,6 @@
 import type { Category, Difficulty } from "@/lib/quiz/types";
 
-export type Phase = "lobby" | "question" | "reveal" | "ended";
+export type Phase = "lobby" | "question" | "reveal" | "standings" | "ended";
 export type SessionStatus = "lobby" | "running" | "ended";
 
 export type SessionConfig = {

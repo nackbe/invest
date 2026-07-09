@@ -63,8 +63,14 @@ export function ScreenApp({ code }: { code: string }) {
         <Ranking rows={ranking.slice(0, 5)} />
       </>)}
 
+      {phase === "standings" && (<>
+        <h1 className="text-5xl font-bold">📊 Puntuación parcial</h1>
+        <Ranking rows={ranking.slice(0, 8)} />
+        <p className="text-xl text-neutral-500">El juego continúa…</p>
+      </>)}
+
       {phase === "ended" && (<>
-        <h1 className="text-5xl font-bold">🏆 Podio</h1>
+        <h1 className="text-5xl font-bold">🏆 Podio final</h1>
         <Ranking rows={ranking} />
       </>)}
     </main>

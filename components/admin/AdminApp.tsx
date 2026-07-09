@@ -57,7 +57,7 @@ export function AdminApp() {
     const r = await fetch("/api/admin/session", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(cfg) });
     const j = await r.json(); setCode(j.code);
   }
-  const control = (action: "launch" | "reveal" | "end") =>
+  const control = (action: "launch" | "reveal" | "standings" | "end") =>
     fetch("/api/admin/control", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ code, action }) });
 
   if (!authed) return (
@@ -131,9 +131,24 @@ export function AdminApp() {
         </div>
       )}
 
+      {phase === "standings" && (
+        <div className="rounded-2xl border border-neutral-800 p-4">
+          <div className="mb-3 text-center text-xl font-bold">📊 Puntuación parcial</div>
+          <div className="flex flex-col gap-2">
+            {ranking.slice(0, 8).map((r, i) => (
+              <div key={r.player_id} className="flex items-center justify-between rounded-xl bg-neutral-900 px-4 py-2">
+                <span><span className="mr-3 text-neutral-500">{i + 1}</span>{r.username}</span>
+                <span className="font-bold tabular-nums text-emerald-400">{r.points}</span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-2 text-center text-xs text-neutral-500">Los jugadores lo ven en pantalla. Pulsa Siguiente para continuar.</p>
+        </div>
+      )}
+
       {phase === "ended" && (
         <div className="rounded-2xl border border-neutral-800 p-4">
-          <div className="mb-3 text-center text-2xl font-bold">🏆 Podio</div>
+          <div className="mb-3 text-center text-2xl font-bold">🏆 Podio final</div>
           <div className="flex flex-col gap-2">
             {ranking.map((r, i) => (
               <div key={r.player_id} className={`flex items-center justify-between rounded-xl px-4 py-2 ${i === 0 ? "bg-emerald-500/15" : "bg-neutral-900"}`}>
@@ -147,12 +162,17 @@ export function AdminApp() {
         </div>
       )}
 
-      <div className="sticky bottom-4 mt-auto flex gap-2">
-        <button onClick={() => control("launch")} className="flex-1 rounded-xl bg-emerald-500 py-3 font-semibold text-neutral-950">
-          {inLobby ? "Empezar ▶" : "Siguiente ▶"}
-        </button>
-        {phase === "question" && <button onClick={() => control("reveal")} className="rounded-xl border border-neutral-700 px-5 py-3">Revelar</button>}
-        <button onClick={() => control("end")} className="rounded-xl border border-rose-800 px-4 py-3 text-rose-300">Fin</button>
+      <div className="sticky bottom-4 mt-auto flex flex-col gap-2">
+        <div className="flex gap-2">
+          <button onClick={() => control("launch")} className="flex-1 rounded-xl bg-emerald-500 py-3 font-semibold text-neutral-950">
+            {inLobby ? "Empezar ▶" : "Siguiente ▶"}
+          </button>
+          {phase === "question" && <button onClick={() => control("reveal")} className="rounded-xl border border-neutral-700 px-5 py-3">Revelar</button>}
+          <button onClick={() => control("end")} className="rounded-xl border border-rose-800 px-4 py-3 text-rose-300">Fin</button>
+        </div>
+        {!inLobby && phase !== "ended" && phase !== "standings" && (
+          <button onClick={() => control("standings")} className="rounded-xl border border-amber-600/60 py-2.5 text-amber-300">📊 Mostrar podio parcial</button>
+        )}
       </div>
       <a href={`/screen/${code}`} target="_blank" className="text-center text-sm text-neutral-500 underline">Abrir proyector</a>
     </main>

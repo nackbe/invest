@@ -69,6 +69,7 @@ export function PlayerApp({ initialCode }: { initialCode: string }) {
           <p className="text-neutral-300">{current.question.explanation}</p>
         </div>
       )}
+      {phase === "standings" && <p className="text-center text-xl text-neutral-300">📊 Puntuación parcial — mira la pantalla</p>}
       {phase === "ended" && <a href={`/screen/${code}`} className="text-center text-emerald-400 underline">Ver resultados</a>}
     </main>
   );
