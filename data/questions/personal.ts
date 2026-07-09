@@ -1,0 +1,61 @@
+// EJEMPLOS placeholder — reemplazar por las preguntas propias del usuario (ver data/import/plantilla.csv).
+import type { Question } from "@/lib/quiz/types";
+
+export const PERSONAL: Question[] = [
+  {
+    id: "per-001",
+    category: "personal",
+    difficulty: "facil",
+    type: "single",
+    prompt: "¿En qué ciudad se realiza esta capacitación?",
+    options: ["Bogotá", "Medellín", "Cali", "Barranquilla"],
+    correctIndex: 0,
+    explanation: "Ejemplo — reemplaza esta pregunta y sus opciones por la ciudad real de tu evento.",
+  },
+  {
+    id: "per-002",
+    category: "personal",
+    difficulty: "facil",
+    type: "boolean",
+    prompt: "¿Este evento se realiza un día viernes?",
+    correct: true,
+    explanation: "Ejemplo — ajusta la respuesta según el día real de tu evento.",
+  },
+  {
+    id: "per-003",
+    category: "personal",
+    difficulty: "facil",
+    type: "text",
+    prompt: "¿Cómo se llama el equipo u oficina que organiza esta actividad?",
+    accept: ["equipo de ejemplo", "el equipo de ejemplo"],
+    explanation: "Ejemplo — reemplaza por el nombre real de tu equipo, área u oficina.",
+  },
+  {
+    id: "per-004",
+    category: "personal",
+    difficulty: "media",
+    type: "single",
+    prompt: "¿Cuántas personas hacen parte del equipo organizador de este evento?",
+    options: ["5", "10", "15", "20"],
+    correctIndex: 1,
+    explanation: "Ejemplo — actualiza con el número real de integrantes de tu equipo.",
+  },
+  {
+    id: "per-005",
+    category: "personal",
+    difficulty: "media",
+    type: "boolean",
+    prompt: "¿La oficina donde trabaja este equipo queda en un edificio de más de cinco pisos?",
+    correct: false,
+    explanation: "Ejemplo — reemplaza con un dato real y verificable sobre tu oficina.",
+  },
+  {
+    id: "per-006",
+    category: "personal",
+    difficulty: "media",
+    type: "text",
+    prompt: "¿Cuál es el nombre de la persona responsable de organizar este evento?",
+    accept: ["nombre de ejemplo", "el nombre de ejemplo"],
+    explanation: "Ejemplo — reemplaza por el nombre real de la persona responsable del evento.",
+  },
+];

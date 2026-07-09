@@ -8,5 +8,7 @@ import { SALUD } from "./salud";
 import { GASTRONOMIA } from "./gastronomia";
 import { CINE } from "./cine";
 import { BELLEZA } from "./belleza";
+import { HISTORIA } from "./historia";
+import { PERSONAL } from "./personal";
 
-export const QUESTION_BANK: Question[] = [...INVERSIONES, ...MUNDIAL, ...CURIOSOS, ...GEOGRAFIA, ...ARTE, ...SALUD, ...GASTRONOMIA, ...CINE, ...BELLEZA];
+export const QUESTION_BANK: Question[] = [...INVERSIONES, ...MUNDIAL, ...CURIOSOS, ...GEOGRAFIA, ...ARTE, ...SALUD, ...GASTRONOMIA, ...CINE, ...BELLEZA, ...HISTORIA, ...PERSONAL];
