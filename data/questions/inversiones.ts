@@ -23,10 +23,10 @@ export const INVERSIONES: Question[] = [
     category: "inversiones",
     difficulty: "facil",
     type: "boolean",
-    prompt: "¿La DIAN es la entidad que recauda los impuestos en Colombia?",
-    correct: true,
+    prompt: "¿El Banco de la República es la entidad que recauda los impuestos en Colombia?",
+    correct: false,
     explanation:
-      "La DIAN (Dirección de Impuestos y Aduanas Nacionales) es la autoridad tributaria y aduanera de Colombia.",
+      "Falso: quien recauda los impuestos en Colombia es la DIAN (Dirección de Impuestos y Aduanas Nacionales); el Banco de la República es la autoridad monetaria del país.",
   },
   {
     id: "inv-003",
@@ -307,10 +307,10 @@ export const INVERSIONES: Question[] = [
     category: "inversiones",
     difficulty: "media",
     type: "boolean",
-    prompt: "¿En Colombia, la utilidad por vender acciones a través de la bolsa de valores puede estar exenta de impuesto de renta si la venta no supera el 10% de las acciones en circulación de esa empresa en un año?",
-    correct: true,
+    prompt: "¿En Colombia, la utilidad por vender acciones a través de la bolsa de valores puede estar exenta de impuesto de renta si la venta no supera el 50% de las acciones en circulación de esa empresa en un año?",
+    correct: false,
     explanation:
-      "El Estatuto Tributario colombiano (art. 36-1) establece que la utilidad en la enajenación de acciones inscritas en bolsa no constituye renta ni ganancia ocasional si un mismo beneficiario real no vende más del 10% de las acciones en circulación de la sociedad durante el mismo año gravable.",
+      "Falso: el umbral que fija el Estatuto Tributario colombiano (art. 36-1) es del 10%, no del 50%. La utilidad no constituye renta ni ganancia ocasional si un mismo beneficiario real no vende más del 10% de las acciones en circulación de la sociedad durante el mismo año gravable.",
   },
   {
     id: "inv-025",
@@ -378,10 +378,10 @@ export const INVERSIONES: Question[] = [
     category: "inversiones",
     difficulty: "facil",
     type: "boolean",
-    prompt: "¿La Bolsa de Valores de Colombia (BVC) es el mercado donde se negocian acciones y bonos en el país?",
-    correct: true,
+    prompt: "¿La Bolsa de Valores de Colombia (BVC) es la entidad encargada de emitir la moneda del país?",
+    correct: false,
     explanation:
-      "La Bolsa de Valores de Colombia (BVC) es la plataforma donde se compran y venden acciones, bonos y otros valores del mercado colombiano.",
+      "Falso: la BVC es la plataforma donde se compran y venden acciones, bonos y otros valores del mercado colombiano; la entidad encargada de emitir la moneda es el Banco de la República.",
   },
   {
     id: "inv-030",

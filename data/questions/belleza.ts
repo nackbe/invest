@@ -56,9 +56,9 @@ export const BELLEZA: Question[] = [
     category: "belleza",
     difficulty: "facil",
     type: "boolean",
-    prompt: "¿Lavarse el cabello con champú ayuda a eliminar el exceso de grasa y suciedad del cuero cabelludo?",
-    correct: true,
-    explanation: "El champú contiene tensioactivos que limpian el cuero cabelludo, eliminando grasa, sudor y residuos de productos.",
+    prompt: "¿El acondicionador se usa principalmente para eliminar el exceso de grasa y suciedad del cuero cabelludo?",
+    correct: false,
+    explanation: "Falso: esa es la función del champú, que contiene tensioactivos para limpiar el cuero cabelludo. El acondicionador se usa para suavizar y desenredar el cabello.",
   },
   {
     id: "bel-006",
@@ -330,9 +330,9 @@ export const BELLEZA: Question[] = [
     category: "belleza",
     difficulty: "media",
     type: "boolean",
-    prompt: "¿Se recomienda aplicar el protector solar como último paso de una rutina de skincare de día, antes del maquillaje?",
-    correct: true,
-    explanation: "El protector solar suele ser el último paso de una rutina de día, aplicado después de hidratar y antes del maquillaje, para proteger la piel de los rayos UV.",
+    prompt: "¿Se recomienda aplicar el protector solar después del maquillaje, como paso final de una rutina de día?",
+    correct: false,
+    explanation: "Falso: el protector solar debe aplicarse antes del maquillaje, como último paso de la rutina de cuidado de la piel, para proteger correctamente la piel de los rayos UV.",
   },
   // -- dificil --
   {

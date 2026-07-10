@@ -66,9 +66,9 @@ export const CINE: Question[] = [
     category: "cine",
     difficulty: "facil",
     type: "boolean",
-    prompt: "¿'Friends' es una serie estadounidense ambientada principalmente en Nueva York?",
-    correct: true,
-    explanation: "'Friends' (1994-2004) sigue a un grupo de amigos que vive en Manhattan, Nueva York.",
+    prompt: "¿'Friends' es una serie estadounidense ambientada principalmente en Los Ángeles?",
+    correct: false,
+    explanation: "Falso: 'Friends' (1994-2004) sigue a un grupo de amigos que vive en Manhattan, Nueva York, no en Los Ángeles.",
   },
   // ---- MEDIA ----
   {
