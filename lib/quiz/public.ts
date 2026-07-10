@@ -1,4 +1,5 @@
 import type { Question } from "./types";
+import { BANK_LAYOUT } from "./optionLayout";
 
 /** Baraja determinista por id (para no revelar el orden correcto de order/match). */
 function shuffleById<T extends { id: string }>(items: T[]): T[] {
@@ -21,18 +22,23 @@ function hashId(id: string): number {
  * (los autores tienden a poner la correcta de primera). `order[posMostrada] = indiceOriginal`.
  * Debe usarse igual al mostrar (toPublic) y al calificar (/api/answer).
  */
-export function optionOrder(id: string, n: number): number[] {
-  const idx = Array.from({ length: n }, (_, i) => i);
-  let seed = hashId(id) || 1;
-  const rnd = () => {
-    seed = (Math.imul(seed, 1103515245) + 12345) & 0x7fffffff;
-    return seed / 0x7fffffff;
-  };
-  for (let i = idx.length - 1; i > 0; i--) {
-    const j = Math.floor(rnd() * (i + 1));
-    [idx[i], idx[j]] = [idx[j], idx[i]];
+/** Todas las permutaciones de [0..n). */
+function permutations(n: number): number[][] {
+  if (n <= 1) return [Array.from({ length: n }, (_, i) => i)];
+  const out: number[][] = [];
+  for (const rest of permutations(n - 1)) {
+    for (let i = 0; i < n; i++) out.push([...rest.slice(0, i), n - 1, ...rest.slice(i)]);
   }
-  return idx;
+  return out;
+}
+
+export function optionOrder(id: string, n: number): number[] {
+  // Preferir el layout round-robin exacto del banco (reparte la correcta 25% c/u);
+  // para ids fuera del banco (tests), caer a una permutación estable por hash.
+  const pre = BANK_LAYOUT.get(id);
+  if (pre && pre.length === n) return pre;
+  const perms = permutations(n);
+  return perms[hashId(id) % perms.length];
 }
 
 /** Proyección pública: el enunciado y las opciones SIN la respuesta correcta. */

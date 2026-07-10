@@ -61,7 +61,16 @@ export function PlayerApp({ initialCode }: { initialCode: string }) {
       {phase === "question" && current?.question && !answered && (
         <QuestionView question={current.question} timerSeconds={current.timerSeconds} startedAt={current.startedAt} onSubmit={submit} />
       )}
-      {phase === "question" && answered && <p className="text-center text-xl">Respuesta enviada ✓ (+{answered.points})</p>}
+      {phase === "question" && answered && (
+        <div className={`flex min-h-[60vh] animate-pulse flex-col items-center justify-center gap-4 rounded-3xl ${answered.correct ? "bg-emerald-500/20" : "bg-rose-500/20"}`}>
+          <div className="text-7xl">{answered.correct ? "✅" : "❌"}</div>
+          <div className={`text-4xl font-extrabold ${answered.correct ? "text-emerald-400" : "text-rose-400"}`}>
+            {answered.correct ? "¡CORRECTO!" : "¡FALLASTE!"}
+          </div>
+          {answered.correct && <div className="text-2xl font-bold text-emerald-300">+{answered.points} puntos</div>}
+          <div className="text-sm text-neutral-500">Espera la siguiente…</div>
+        </div>
+      )}
       {phase === "reveal" && current?.phase === "reveal" && current?.question && (
         <div className="flex flex-col gap-3 text-center">
           <div className={`text-2xl font-bold ${answered?.correct ? "text-emerald-400" : "text-rose-400"}`}>

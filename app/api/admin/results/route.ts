@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdmin } from "@/lib/admin";
 import { getServiceClient } from "@/lib/supabase/server";
 import { QUESTION_BANK } from "@/data/questions";
+import { answerText } from "@/lib/quiz/answerText";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +22,12 @@ export async function GET(req: Request) {
 
   const questions = (sq ?? []).map((r) => {
     const q = QUESTION_BANK.find((x) => x.id === r.question_id);
-    return { id: r.question_id, order: r.order_index, prompt: q?.prompt ?? r.question_id, category: q?.category ?? "", difficulty: q?.difficulty ?? "" };
+    return {
+      id: r.question_id, order: r.order_index,
+      prompt: q?.prompt ?? r.question_id,
+      answer: q ? answerText(q) : "",
+      category: q?.category ?? "", difficulty: q?.difficulty ?? "",
+    };
   });
 
   return NextResponse.json({ questions, players: players ?? [], answers: answers ?? [] });

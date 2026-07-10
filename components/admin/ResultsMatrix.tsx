@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-type Q = { id: string; order: number; prompt: string; category: string; difficulty: string };
+type Q = { id: string; order: number; prompt: string; answer: string; category: string; difficulty: string };
 type P = { id: string; username: string };
 type A = { player_id: string; question_id: string; correct: boolean; points: number };
 type Data = { questions: Q[]; players: P[]; answers: A[] };
@@ -54,7 +54,21 @@ export function ResultsMatrix({ code }: { code: string }) {
           ))}
         </tbody>
       </table>
-      <p className="mt-2 text-xs text-neutral-500">Verde = acertó · Rojo = falló · — = no respondió. Pasa el mouse por el número de pregunta para ver el enunciado.</p>
+      <p className="mt-2 text-xs text-neutral-500">Verde = acertó · Rojo = falló · — = no respondió.</p>
+
+      {/* Detalle de cada pregunta: enunciado + respuesta correcta */}
+      <div className="mt-5 flex flex-col gap-2">
+        <div className="text-sm font-medium text-neutral-300">Preguntas y respuestas</div>
+        {data.questions.map((q, i) => (
+          <div key={q.id} className="rounded-lg border border-neutral-800 p-2 text-sm">
+            <div className="flex gap-2">
+              <span className="shrink-0 font-semibold text-neutral-500">{i + 1}.</span>
+              <span>{q.prompt} <span className="text-xs text-neutral-600">({q.category}·{q.difficulty})</span></span>
+            </div>
+            <div className="mt-1 pl-5 text-emerald-400">✓ {q.answer}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
