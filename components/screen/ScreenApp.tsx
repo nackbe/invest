@@ -25,7 +25,7 @@ function Media({ q }: { q: CurrentQuestion["question"] }) {
 
 export function ScreenApp({ code }: { code: string }) {
   const { session } = useSession(code);
-  const ranking = useRanking(session?.id);
+  const ranking = useRanking(code);
   const players = usePlayers(session?.id);
   const [current, setCurrent] = useState<CurrentQuestion | null>(null);
   useEffect(() => {

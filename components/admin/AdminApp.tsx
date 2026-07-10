@@ -28,7 +28,7 @@ export function AdminApp() {
   const [cfg, setCfg] = useState({ numQuestions: 12, categories: CATS, difficultyDist: DEFAULT_DIST, timerSeconds: 20 });
   const { session } = useSession(code ?? "");
   const players = usePlayers(session?.id);
-  const ranking = useRanking(session?.id);
+  const ranking = useRanking(code ?? undefined);
   const [current, setCurrent] = useState<Current | null>(null);
   const [remaining, setRemaining] = useState(0);
   const [showDetail, setShowDetail] = useState(false);

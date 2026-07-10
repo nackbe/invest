@@ -21,7 +21,7 @@ export function PlayerApp({ initialCode }: { initialCode: string }) {
   const [username, setUsername] = useState("");
   const { player, join } = usePlayer(code);
   const { session } = useSession(code);
-  const ranking = useRanking(session?.id);
+  const ranking = useRanking(code);
   const [current, setCurrent] = useState<CurrentQuestion | null>(null);
   const [answered, setAnswered] = useState<{ correct: boolean; points: number } | null>(null);
 

@@ -1,20 +1,35 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getBrowserClient } from "@/lib/supabase/browser";
 import type { RankingRow } from "@/lib/supabase/types";
 
-export function useRanking(sessionId: string | undefined) {
+/**
+ * Ranking de la sala por POLLING del endpoint AUTORITATIVO del servidor
+ * (/api/session/[code]/ranking, service-role → salta RLS). Admin, proyector y
+ * jugadores consultan la MISMA fuente, así siempre ven lo mismo y sincronizado.
+ * (No consultamos la vista `ranking` desde el cliente: la RLS puede devolver
+ * distinto según el contexto de auth → desincronización.)
+ */
+export function useRanking(code: string | undefined) {
   const [rows, setRows] = useState<RankingRow[]>([]);
   useEffect(() => {
-    if (!sessionId) return;
-    const db = getBrowserClient();
-    const load = () => db.from("ranking").select("*").eq("session_id", sessionId).then(({ data }) =>
-      setRows(((data ?? []) as RankingRow[]).sort((a, b) => b.points - a.points || a.total_ms - b.total_ms)));
+    if (!code) {
+      setRows([]);
+      return;
+    }
+    let active = true;
+    const load = () =>
+      fetch(`/api/session/${code}/ranking`, { cache: "no-store" })
+        .then((r) => r.json())
+        .then((j) => {
+          if (active) setRows((j.rows ?? []) as RankingRow[]);
+        })
+        .catch(() => {});
     load();
-    const ch = db.channel(`ans:${sessionId}`)
-      .on("postgres_changes", { event: "INSERT", schema: "public", table: "answers", filter: `session_id=eq.${sessionId}` }, load)
-      .subscribe();
-    return () => { db.removeChannel(ch); };
-  }, [sessionId]);
+    const iv = setInterval(load, 1200);
+    return () => {
+      active = false;
+      clearInterval(iv);
+    };
+  }, [code]);
   return rows;
 }
