@@ -10,6 +10,27 @@ export type ContestConfig = {
 
 const DIFS: Difficulty[] = ["facil", "media", "dificil"];
 
+/** Baraja (Fisher-Yates) una copia del array. */
+function shuffle<T>(arr: T[], rng: () => number): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/** Reparte `total` en `n` cubos lo más parejo posible; el sobrante (+1) va a cubos al azar. */
+function evenSplit(total: number, n: number, rng: () => number): number[] {
+  if (n <= 0) return [];
+  const base = Math.floor(total / n);
+  const counts = new Array(n).fill(base) as number[];
+  const rem = total - base * n;
+  const order = shuffle(Array.from({ length: n }, (_, i) => i), rng);
+  for (let k = 0; k < rem; k++) counts[order[k]]++;
+  return counts;
+}
+
 /** Reparte numQuestions por porcentaje; el sobrante de redondeo va al de mayor resto (largest remainder). */
 export function difficultyQuotas(
   numQuestions: number,
@@ -30,53 +51,45 @@ export function difficultyQuotas(
   return quotas;
 }
 
-/** Muestrea del banco según cupos de dificultad y ordena agrupado por categoría. */
+/**
+ * Arma el set del concurso:
+ * - respeta EXACTO los cupos de dificultad (difficultyDist) sobre numQuestions,
+ * - reparte cada cupo de dificultad LO MÁS PAREJO POSIBLE entre las categorías elegidas,
+ * - baraja el bucket completo de cada (categoría, dificultad) para máxima variedad entre partidas,
+ * - rellena faltantes si algún bucket se queda corto, y baraja el orden final.
+ */
 export function assembleSet(bank: Question[], config: ContestConfig, rng: () => number = Math.random): Question[] {
-  if (config.categories.length === 0) return [];
+  const cats = config.categories.filter((c) => bank.some((q) => q.category === c));
+  if (cats.length === 0) return [];
 
-  const pool = bank.filter((q) => config.categories.includes(q.category));
   const quotas = difficultyQuotas(config.numQuestions, config.difficultyDist);
-
+  const used = new Set<string>();
   const picked: Question[] = [];
-  let catIdx = 0;
 
   for (const d of DIFS) {
-    const need = quotas[d];
-    for (let n = 0; n < need; n++) {
-      // Cycle through categories to ensure distribution
-      const cat = config.categories[catIdx % config.categories.length];
-      let candidates = pool.filter((q) => q.difficulty === d && q.category === cat && !picked.includes(q));
-
-      // If no candidates for current category, try others
-      if (candidates.length === 0) {
-        for (let attempt = 1; attempt < config.categories.length; attempt++) {
-          const altCat = config.categories[(catIdx + attempt) % config.categories.length];
-          candidates = pool.filter((q) => q.difficulty === d && q.category === altCat && !picked.includes(q));
-          if (candidates.length > 0) break;
-        }
+    const perCat = evenSplit(quotas[d], cats.length, rng); // reparto parejo del cupo de esta dificultad
+    cats.forEach((c, i) => {
+      const bucket = shuffle(
+        bank.filter((q) => q.category === c && q.difficulty === d && !used.has(q.id)),
+        rng
+      );
+      for (let k = 0; k < perCat[i] && k < bucket.length; k++) {
+        picked.push(bucket[k]);
+        used.add(bucket[k].id);
       }
-
-      if (candidates.length > 0) {
-        const idx = Math.floor(rng() * candidates.length);
-        picked.push(candidates[idx]);
-        catIdx++;
-      }
-    }
+    });
   }
 
+  // Relleno: si algún bucket no tenía suficientes, completar desde el resto (categorías elegidas), barajado.
   if (picked.length < config.numQuestions) {
-    let remaining = pool.filter((q) => !picked.includes(q));
-    while (picked.length < config.numQuestions && remaining.length > 0) {
-      const idx = Math.floor(rng() * remaining.length);
-      picked.push(remaining[idx]);
-      remaining = remaining.filter((_, i) => i !== idx);
+    const rest = shuffle(bank.filter((q) => cats.includes(q.category) && !used.has(q.id)), rng);
+    for (const q of rest) {
+      if (picked.length >= config.numQuestions) break;
+      picked.push(q);
+      used.add(q.id);
     }
   }
 
-  // Orden ALEATORIO mezclando temas (no agrupar por categoría) — Fisher-Yates con rng.
-  for (let i = picked.length - 1; i > 0; i--) {
-    const j = Math.floor(rng() * (i + 1));
-    [picked[i], picked[j]] = [picked[j], picked[i]];
-  }
-  return picked;
+  // Orden final aleatorio (mezcla temas, no agrupa por categoría).
+  return shuffle(picked, rng);
 }
